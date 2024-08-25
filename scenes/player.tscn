@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_cblew"]
 [ext_resource type="Texture2D" uid="uid://ca1dswty8336p" path="res://sprites/Spritesheet_Idle.png" id="2_2d5k4"]
 [ext_resource type="Script" path="res://scripts/portal_gun.gd" id="2_aye80"]
+[ext_resource type="Texture2D" uid="uid://8w6nkqhrpj2w" path="res://sprites/Portal gun.png" id="4_gk7nr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7lmsa"]
 atlas = ExtResource("2_2d5k4")
@@ -183,8 +184,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_qnbs7"]
 radius = 15.0
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_t1j7e"]
-
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_cblew")
@@ -194,7 +193,7 @@ scale = Vector2(0.024, 0.0240612)
 sprite_frames = SubResource("SpriteFrames_dy5nv")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.206716
+frame_progress = 0.650989
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qnbs7")
@@ -204,6 +203,9 @@ collision_layer = 2
 script = ExtResource("2_aye80")
 
 [node name="portal_gun" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(25, 0)
-scale = Vector2(6.44, 6.44)
-texture = SubResource("CanvasTexture_t1j7e")
+position = Vector2(25, -7.46608e-07)
+rotation = -2.13887
+scale = Vector2(0.0244648, 0.0244648)
+texture = ExtResource("4_gk7nr")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/portal_gun"]

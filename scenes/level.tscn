@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cicj8mww1u4c7" path="res://scenes/box.tscn" id="2_4ojda"]
 
 [node name="Level" type="Node2D"]
-scale = Vector2(5, 5)
 
 [node name="Player" parent="." instance=ExtResource("1_bqpxw")]
 position = Vector2(402, 354)
