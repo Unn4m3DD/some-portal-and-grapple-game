@@ -17,8 +17,52 @@ position = Vector2(521, 546)
 scale = Vector2(38.12, 3)
 
 [node name="box2" parent="." instance=ExtResource("2_4ojda")]
-position = Vector2(928, 338)
+position = Vector2(930, 752)
 rotation = -1.57079
+scale = Vector2(23.92, 3)
+
+[node name="box6" parent="." instance=ExtResource("2_4ojda")]
+position = Vector2(1161, 964)
+rotation = -3.14159
+scale = Vector2(23.92, 3)
+
+[node name="box7" parent="." instance=ExtResource("2_4ojda")]
+position = Vector2(1430, 914)
+rotation = -3.14159
+scale = Vector2(23.92, 3)
+
+[node name="box8" parent="." instance=ExtResource("2_4ojda")]
+position = Vector2(1568, 858)
+rotation = -3.14159
+scale = Vector2(23.92, 3)
+
+[node name="box9" parent="." instance=ExtResource("2_4ojda")]
+position = Vector2(1687, 798)
+rotation = -3.14159
+scale = Vector2(23.92, 3)
+
+[node name="box10" parent="." instance=ExtResource("2_4ojda")]
+position = Vector2(1792, 738)
+rotation = -3.14159
+scale = Vector2(23.92, 3)
+
+[node name="box11" parent="." instance=ExtResource("2_4ojda")]
+position = Vector2(1876, 681)
+rotation = -3.14159
+scale = Vector2(23.92, 3)
+
+[node name="box12" parent="." instance=ExtResource("2_4ojda")]
+position = Vector2(1354, 576)
+rotation = -3.14159
+scale = Vector2(17.36, 3)
+
+[node name="box4" parent="." instance=ExtResource("2_4ojda")]
+position = Vector2(718, -42)
+rotation = -1.57079
+scale = Vector2(23.92, 3)
+
+[node name="box5" parent="." instance=ExtResource("2_4ojda")]
+position = Vector2(1398, 239)
 scale = Vector2(23.92, 3)
 
 [node name="box3" parent="." instance=ExtResource("2_4ojda")]

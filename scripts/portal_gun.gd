@@ -23,5 +23,6 @@ func _input(event: InputEvent) -> void:
 			if event.pressed:
 				var portal_projectile = portal_projectile_scene.instantiate()
 				portal_projectile.position = portal_gun.global_position
+				portal_projectile.rotation = atan2(direction.y, direction.x)
 				portal_projectile.direction = direction
 				root.add_child(portal_projectile)

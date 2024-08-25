@@ -6,25 +6,28 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_ju35h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fsk5v"]
-size = Vector2(30, 60)
+size = Vector2(200, 60)
 
 [node name="PortalManager" type="Node2D"]
 script = ExtResource("1_x7cqm")
 
 [node name="BluePortal" type="Area2D" parent="."]
+scale = Vector2(0.1, 1)
 collision_mask = 2
 script = ExtResource("2_85teo")
 metadata/other = NodePath("../OrangePortal")
 
 [node name="Sprite2D" type="Sprite2D" parent="BluePortal"]
 modulate = Color(0.078125, 0, 1, 1)
-scale = Vector2(30, 59.593)
+scale = Vector2(29.8782, 59.593)
 texture = SubResource("CanvasTexture_ju35h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BluePortal"]
+position = Vector2(100, 0)
 shape = SubResource("RectangleShape2D_fsk5v")
 
 [node name="OrangePortal" type="Area2D" parent="."]
+scale = Vector2(0.1, 1)
 collision_mask = 2
 script = ExtResource("2_85teo")
 metadata/other = NodePath("../BluePortal")
@@ -35,6 +38,7 @@ scale = Vector2(30, 59.593)
 texture = SubResource("CanvasTexture_ju35h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrangePortal"]
+position = Vector2(100, 0)
 shape = SubResource("RectangleShape2D_fsk5v")
 
 [connection signal="body_entered" from="BluePortal" to="BluePortal" method="_on_body_entered"]
