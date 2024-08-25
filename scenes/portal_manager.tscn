@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://digt8gbgjtjp2"]
+
+[ext_resource type="Script" path="res://scripts/portal_manager.gd" id="1_x7cqm"]
+[ext_resource type="Script" path="res://scripts/portal.gd" id="2_85teo"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1hgde"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ju35h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsk5v"]
+size = Vector2(30, 60)
+
+[node name="PortalManager" type="Node2D"]
+script = ExtResource("1_x7cqm")
+
+[node name="OrangePortal" type="Sprite2D" parent="."]
+modulate = Color(1, 0.609375, 0, 1)
+position = Vector2(40, 0)
+scale = Vector2(30, 60)
+texture = SubResource("CanvasTexture_1hgde")
+
+[node name="BluePortal" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("2_85teo")
+metadata/other = NodePath("../OrangePortal")
+
+[node name="Sprite2D" type="Sprite2D" parent="BluePortal"]
+modulate = Color(0.078125, 0, 1, 1)
+scale = Vector2(30, 59.593)
+texture = SubResource("CanvasTexture_ju35h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BluePortal"]
+shape = SubResource("RectangleShape2D_fsk5v")
+
+[connection signal="area_entered" from="BluePortal" to="BluePortal" method="_on_area_entered"]
+[connection signal="body_entered" from="BluePortal" to="BluePortal" method="_on_body_entered"]

@@ -1,6 +1,8 @@
 extends Area2D
 
 @onready var root = get_node("/root/");
+@onready var portal_manager: Node2D = $/root/Level/PortalManager
+
 
 var direction := Vector2.ZERO
 const speed := 800.0
@@ -11,7 +13,5 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(_body: Node2D) -> void:
-	var box = box_scene.instantiate()
-	box.position = global_position
-	root.add_child(box)
+	portal_manager.spawn_portal(global_position)	
 	queue_free()

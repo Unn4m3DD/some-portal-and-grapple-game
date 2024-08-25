@@ -185,6 +185,7 @@ animations = [{
 radius = 15.0
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
 collision_layer = 2
 script = ExtResource("1_cblew")
 
