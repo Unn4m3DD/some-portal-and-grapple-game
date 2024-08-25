@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7e7nt2r1s5yi"]
+
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_cblew"]
+[ext_resource type="Script" path="res://scripts/portal_gun.gd" id="2_aye80"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wimfi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qnbs7"]
+radius = 15.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_t1j7e"]
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_cblew")
+
+[node name="body" type="Sprite2D" parent="."]
+scale = Vector2(29.98, 29.98)
+texture = SubResource("CanvasTexture_wimfi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qnbs7")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 2
+script = ExtResource("2_aye80")
+
+[node name="portal_gun" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(25, 0)
+scale = Vector2(6.44, 6.44)
+texture = SubResource("CanvasTexture_t1j7e")

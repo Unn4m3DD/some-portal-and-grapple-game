@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://8y8p2i5ocda6"]
+
+[ext_resource type="PackedScene" uid="uid://b7e7nt2r1s5yi" path="res://scenes/player.tscn" id="1_bqpxw"]
+[ext_resource type="PackedScene" uid="uid://cicj8mww1u4c7" path="res://scenes/box.tscn" id="2_4ojda"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_bqpxw")]
+position = Vector2(402, 354)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
+[node name="box" parent="." instance=ExtResource("2_4ojda")]
+position = Vector2(521, 546)
+scale = Vector2(38.12, 3)
+
+[node name="box2" parent="." instance=ExtResource("2_4ojda")]
+position = Vector2(928, 338)
+rotation = -1.57079
+scale = Vector2(23.92, 3)
+
+[node name="box3" parent="." instance=ExtResource("2_4ojda")]
+position = Vector2(167, 338)
+rotation = -1.57079
+scale = Vector2(23.92, 3)
