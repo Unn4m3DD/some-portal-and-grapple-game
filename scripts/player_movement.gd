@@ -46,12 +46,13 @@ const config := {
 	x_acceleration = 200.0,
 	max_x_speed = 800.0,
 	max_y_speed = 1000.0,
+	max_y_speed_with_down_pressed = 1200.0,
 	gravity = 50.0,
 	jump_force = 1000.0,
 	squish = .8,
 	coyote_time_ms = 100,
 	jump_buffering_time_ms = 100,
-	distance_to_portal_before_tp = 15,
+	distance_to_portal_before_tp = 25,
 	disabled_controls_after_tp_ms = 200,
 }
 
@@ -130,7 +131,12 @@ func _physics_process(_delta: float) -> void:
 			last_jump_input = 0
 	
 	if not is_on_floor():
-		velocity.y = move_toward(velocity.y, config.max_y_speed, config.gravity)
+		if Time.get_ticks_msec() - last_teleport_ms > config.disabled_controls_after_tp_ms:
+			velocity.y = move_toward(
+				velocity.y,
+				config.max_y_speed_with_down_pressed if Input.is_action_pressed("down") else config.max_y_speed,
+				config.gravity * 2 if Input.is_action_pressed("down") else config.gravity,
+			)
 	
 	if not prev.is_on_floor and is_on_floor():
 		animation_player.play("squish")
