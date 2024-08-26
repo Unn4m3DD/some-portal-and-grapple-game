@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://8y8p2i5ocda6"]
+[gd_scene load_steps=7 format=3 uid="uid://8y8p2i5ocda6"]
 
 [ext_resource type="PackedScene" uid="uid://b7e7nt2r1s5yi" path="res://scenes/player.tscn" id="1_bqpxw"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="2_usl5j"]
 [ext_resource type="PackedScene" uid="uid://digt8gbgjtjp2" path="res://scenes/portal_manager.tscn" id="3_xn3r8"]
 [ext_resource type="Texture2D" uid="uid://d4eldxyvbjkiu" path="res://sprites/Tilemap.png" id="4_twun6"]
 
@@ -34,7 +35,8 @@ z_index = 5
 position = Vector2(402, 354)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position_smoothing_enabled = true
+scale = Vector2(4.94, 4.94)
+script = ExtResource("2_usl5j")
 
 [node name="PortalManager" parent="." instance=ExtResource("3_xn3r8")]
 unique_name_in_owner = true

@@ -4,14 +4,14 @@ var gravity_magnitude: int = ProjectSettings.get_setting("physics/2d/default_gra
 
 @onready var other_portal: Node2D = get_node("./%s" % get_meta("other"))
 
-static var portal_mutex = false
+static var portal_mutex := false
 
 func _on_body_entered(player: CharacterBody2D) -> void:
 	if portal_mutex:
 		return
 	portal_mutex = true
-	var y_distance = (player.global_position.y - global_position.y)
-	var velocity_value = player.velocity.length() + y_distance 
+	var y_distance := (player.global_position.y - global_position.y)
+	var velocity_value := player.velocity.length() + y_distance
 	print(y_distance)
 	print(player.velocity)
 	var player_collider: CollisionShape2D = player.get_node("CollisionShape2D")

@@ -1,10 +1,10 @@
 extends Node2D
 
-@onready var root = get_node("/root/");
+@onready var root := get_node("/root/");
 @onready var orange_portal: Area2D = $OrangePortal
 @onready var blue_portal: Area2D = $BluePortal
 
-var current_portal = 'orange';
+var current_portal := 'orange';
 
 func spawn_portal(new_position: Vector2, new_rotation: float) -> void:
 	var new_portal: Area2D
