@@ -34,8 +34,6 @@ var opposite = {
 	bottom = 'top',
 }
 
-# if $Chain.hooked:
-# 	$Chain.tip
 
 var chain_velocity := Vector2(0, 0)
 var has_double_jump_charge := false
@@ -46,14 +44,15 @@ const config := {
 	x_acceleration = 200.0,
 	max_x_speed = 800.0,
 	max_y_speed = 1000.0,
-	max_y_speed_with_down_pressed = 1200.0,
+	max_y_speed_with_down_pressed = 1500.0,
 	gravity = 50.0,
 	jump_force = 1000.0,
 	squish = .8,
-	coyote_time_ms = 100,
-	jump_buffering_time_ms = 100,
+	coyote_time_ms = 200,
+	jump_buffering_time_ms = 200,
 	distance_to_portal_before_tp = 25,
 	disabled_controls_after_tp_ms = 200,
+	chain_velocity = 100.0,
 }
 
 var prev := {
@@ -71,7 +70,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			if event.pressed:
-				$Chain.shoot(event.position - get_viewport().size * 0.5)
+				var mouse_vector = (get_global_mouse_position() - position).normalized()
+				$Chain.shoot(mouse_vector)
 			else:
 				$Chain.release()
 
@@ -126,7 +126,7 @@ func _physics_process(_delta: float) -> void:
 	if Time.get_ticks_msec() - last_jump_input < config.jump_buffering_time_ms:
 		if Time.get_ticks_msec() - last_on_floor < config.coyote_time_ms || has_double_jump_charge:
 			animation_player.play("squish")
-			has_double_jump_charge = is_on_floor()
+			has_double_jump_charge = Time.get_ticks_msec() - last_on_floor < config.coyote_time_ms
 			velocity.y = -config.jump_force;
 			last_jump_input = 0
 	
@@ -143,4 +143,8 @@ func _physics_process(_delta: float) -> void:
 	if is_on_floor():
 		last_on_floor = Time.get_ticks_msec()
 	prev.is_on_floor = is_on_floor()
+
+	if $Chain.hooked:
+		var chain_vector = $Chain.tip - global_position
+		velocity += chain_vector.normalized() * config.chain_velocity
 	move_and_slide()

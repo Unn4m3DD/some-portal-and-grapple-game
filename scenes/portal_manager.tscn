@@ -1,9 +1,15 @@
-[gd_scene load_steps=61 format=3 uid="uid://digt8gbgjtjp2"]
+[gd_scene load_steps=64 format=3 uid="uid://digt8gbgjtjp2"]
 
 [ext_resource type="Script" path="res://scripts/portal_manager.gd" id="1_x7cqm"]
 [ext_resource type="Script" path="res://scripts/portal.gd" id="2_85teo"]
 [ext_resource type="Texture2D" uid="uid://demy32tkl5ry8" path="res://sprites/blue_portal_idle.png" id="3_g1rk3"]
+[ext_resource type="Shader" path="res://shaders/portal_manager.gdshader" id="4_6nvbp"]
 [ext_resource type="Texture2D" uid="uid://btnor34w22d7o" path="res://sprites/orange_portal_idle.png" id="4_uqbhi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_phbmu"]
+shader = ExtResource("4_6nvbp")
+shader_parameter/color_a = Color(0.49, 0.651, 1, 1)
+shader_parameter/color_b = Color(0.42, 0.575, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iuxa0"]
 atlas = ExtResource("3_g1rk3")
@@ -197,6 +203,11 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vf5je"]
 size = Vector2(20, 150)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2y2op"]
+shader = ExtResource("4_6nvbp")
+shader_parameter/color_a = Color(1, 0.631373, 0, 1)
+shader_parameter/color_b = Color(1, 0.70193, 0.191406, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jqpm8"]
 atlas = ExtResource("4_uqbhi")
@@ -401,6 +412,7 @@ script = ExtResource("2_85teo")
 metadata/other = NodePath("../OrangePortal")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BluePortal"]
+material = SubResource("ShaderMaterial_phbmu")
 rotation = 3.14159
 scale = Vector2(0.0848485, 0.0848485)
 sprite_frames = SubResource("SpriteFrames_cux63")
@@ -418,11 +430,14 @@ script = ExtResource("2_85teo")
 metadata/other = NodePath("../BluePortal")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="OrangePortal"]
+material = SubResource("ShaderMaterial_2y2op")
 rotation = 3.14159
 scale = Vector2(0.085, 0.085)
 sprite_frames = SubResource("SpriteFrames_1bouc")
 animation = &"idle"
 autoplay = "idle"
+frame = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrangePortal"]
+visible = false
 shape = SubResource("RectangleShape2D_kl8in")
