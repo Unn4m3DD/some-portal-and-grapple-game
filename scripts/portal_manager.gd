@@ -17,6 +17,5 @@ func spawn_portal(new_position: Vector2, new_rotation: float) -> void:
 			current_portal = 'orange'
 
 	var sprite: Sprite2D = new_portal.get_node("Sprite2D")
-	print(sprite.texture.get_width(), sprite.scale.x)
-	new_portal.position = new_position + Vector2.RIGHT.rotated(new_rotation) * sprite.texture.get_width() * 1. / 2 * sprite.scale.x * new_portal.scale.x
+	new_portal.position =	new_position + Vector2.RIGHT.rotated(new_rotation) * sprite.texture.get_width() * 1. / 2 * sprite.scale.x * new_portal.scale.x
 	new_portal.rotation = new_rotation

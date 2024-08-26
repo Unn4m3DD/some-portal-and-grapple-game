@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://digt8gbgjtjp2"]
+[gd_scene load_steps=6 format=3 uid="uid://digt8gbgjtjp2"]
 
 [ext_resource type="Script" path="res://scripts/portal_manager.gd" id="1_x7cqm"]
 [ext_resource type="Script" path="res://scripts/portal.gd" id="2_85teo"]
@@ -6,14 +6,18 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_ju35h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fsk5v"]
-size = Vector2(200, 60)
+size = Vector2(40, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kl8in"]
+size = Vector2(40, 60)
 
 [node name="PortalManager" type="Node2D"]
 script = ExtResource("1_x7cqm")
 
 [node name="BluePortal" type="Area2D" parent="."]
-scale = Vector2(0.1, 1)
-collision_mask = 2
+scale = Vector2(0.1, 2)
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("2_85teo")
 metadata/other = NodePath("../OrangePortal")
 
@@ -24,11 +28,12 @@ scale = Vector2(29.8782, 59.593)
 texture = SubResource("CanvasTexture_ju35h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BluePortal"]
-position = Vector2(100, 0)
 shape = SubResource("RectangleShape2D_fsk5v")
 
 [node name="OrangePortal" type="Area2D" parent="."]
-scale = Vector2(0.1, 1)
+position = Vector2(-40, 0)
+scale = Vector2(0.1, 2)
+collision_layer = 4
 collision_mask = 2
 script = ExtResource("2_85teo")
 metadata/other = NodePath("../BluePortal")
@@ -40,10 +45,4 @@ scale = Vector2(30, 59.593)
 texture = SubResource("CanvasTexture_ju35h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrangePortal"]
-position = Vector2(100, 0)
-shape = SubResource("RectangleShape2D_fsk5v")
-
-[connection signal="body_entered" from="BluePortal" to="BluePortal" method="_on_body_entered"]
-[connection signal="body_exited" from="BluePortal" to="BluePortal" method="_on_body_exited"]
-[connection signal="body_entered" from="OrangePortal" to="OrangePortal" method="_on_body_entered"]
-[connection signal="body_exited" from="OrangePortal" to="OrangePortal" method="_on_body_exited"]
+shape = SubResource("RectangleShape2D_kl8in")
