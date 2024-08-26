@@ -51,7 +51,7 @@ const config := {
 	squish = .8,
 	coyote_time_ms = 100,
 	jump_buffering_time_ms = 100,
-	distance_to_portal_before_tp = 10,
+	distance_to_portal_before_tp = 15,
 	disabled_controls_after_tp_ms = 200,
 }
 
@@ -91,13 +91,16 @@ func _process(_delta: float) -> void:
 					elif not teleport_mutex[ray_key] and not teleport_mutex[opposite[ray_key]]:
 						var current_portal = ray.get_collider();
 						var other_portal = current_portal.other_portal
-						var transform_rotation = (current_portal.rotation) - other_portal.rotation;
-						velocity = velocity.rotated(-(transform_rotation + PI))
-						collision_shape_2d.position = collider_initial_position + (ray.target_position.normalized() * (distance - ray.target_position.length())).rotated(transform_rotation)
+						velocity = velocity.length() * Vector2.RIGHT.rotated(other_portal.rotation)
+						collision_shape_2d.position = \
+							collider_initial_position + \
+							(ray.target_position.normalized() * (distance - ray.target_position.length())) \
+							.rotated(current_portal.rotation - other_portal.rotation)
 						last_teleport_ms = Time.get_ticks_msec()
 						teleport_mutex[opposite[ray_key]] = true
 						teleport_mutex[ray_key] = true
-						global_position = other_portal.global_position + velocity * .1
+						global_position = other_portal.global_position + velocity.normalized() * 100
+						has_double_jump_charge = true
 			else:
 				teleport_mutex[ray_key] = false
 	
