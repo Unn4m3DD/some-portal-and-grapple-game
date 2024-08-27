@@ -24,3 +24,5 @@ func spawn_portal(new_position: Vector2, new_rotation: float, can_orange_portal:
 	var collision_shape: CollisionShape2D = new_portal.get_node("CollisionShape2D")
 	new_portal.position =	new_position + Vector2.RIGHT.rotated(new_rotation) * collision_shape.shape.size.x * .2 * collision_shape.scale.x * new_portal.scale.x
 	new_portal.rotation = new_rotation
+	var collision_shape2d: AnimationPlayer = new_portal.get_node("AnimationPlayer")
+	collision_shape2d.play("portal_spawn")
