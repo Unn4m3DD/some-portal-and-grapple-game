@@ -4,9 +4,8 @@ extends Node2D
 @onready var orange_portal: Area2D = $OrangePortal
 @onready var blue_portal: Area2D = $BluePortal
 
-var current_portal := 'orange';
 
-func spawn_portal(new_position: Vector2, new_rotation: float, can_orange_portal: bool, can_blue_portal: bool) -> void:
+func spawn_portal(current_portal: String, new_position: Vector2, new_rotation: float, can_orange_portal: bool, can_blue_portal: bool) -> void:
 	var new_portal: Area2D
 	if not can_orange_portal and current_portal == 'orange':
 		return

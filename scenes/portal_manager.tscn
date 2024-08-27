@@ -202,7 +202,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vf5je"]
-size = Vector2(20, 150)
+size = Vector2(10, 150)
 
 [sub_resource type="Animation" id="Animation_gn42f"]
 length = 0.001
@@ -448,7 +448,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kl8in"]
-size = Vector2(20, 150)
+size = Vector2(10, 150)
 
 [node name="PortalManager" type="Node2D"]
 script = ExtResource("1_x7cqm")
@@ -468,7 +468,6 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BluePortal"]
-visible = false
 shape = SubResource("RectangleShape2D_vf5je")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BluePortal"]
@@ -480,7 +479,7 @@ libraries = {
 position = Vector2(1.90735e-06, -3.8147e-06)
 scale = Vector2(2.1875, 2.625)
 color = Color(0.574407, 0.73268, 1, 1)
-energy = 0.5
+energy = 0.7
 range_z_min = -1
 texture = SubResource("GradientTexture2D_p4mj1")
 
@@ -512,6 +511,6 @@ libraries = {
 position = Vector2(1.52588e-05, 0)
 scale = Vector2(2.1875, 2.625)
 color = Color(1, 0.701961, 0.188235, 1)
-energy = 0.5
+energy = 0.7
 range_z_min = -1
 texture = SubResource("GradientTexture2D_p4mj1")

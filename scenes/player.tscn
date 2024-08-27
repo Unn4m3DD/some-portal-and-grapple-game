@@ -230,6 +230,7 @@ _data = {
 radius = 18.1108
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(1.2, 1.2)
 collision_layer = 2
 script = ExtResource("1_cblew")
 
@@ -247,13 +248,13 @@ frame_progress = 0.516526
 offset = Vector2(0, -689.71)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(0, -17)
 scale = Vector2(2, 2)
 collision_layer = 2
 script = ExtResource("2_aye80")
 
 [node name="portal_gun" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(25, -7.46608e-07)
+position = Vector2(21, 0)
 rotation = -2.13887
 scale = Vector2(0.0244648, 0.0244648)
 texture = ExtResource("4_gk7nr")
@@ -315,8 +316,6 @@ position = Vector2(17, -18)
 target_position = Vector2(0, 80)
 collision_mask = 4
 collide_with_areas = true
-
-[node name="Hitbox" type="Node" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.56509

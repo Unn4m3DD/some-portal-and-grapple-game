@@ -4,10 +4,10 @@ extends Area2D
 @onready var portal_manager := $ / root / Level / PortalManager
 @onready var ray_cast_2d := $RayCast2D
 
-
 var direction := Vector2.ZERO
 const speed := 2500.0
 var box_scene := preload("res://scenes/box.tscn")
+var portal_color := ''
 
 func _process(delta: float) -> void:
 	position += direction * speed * delta
@@ -21,5 +21,5 @@ func _process(delta: float) -> void:
 		
 		var normal: Vector2 = ray_cast_2d.get_collision_normal()
 		rotation = atan2(normal.y, normal.x)
-		portal_manager.spawn_portal(ray_cast_2d.get_collision_point(), rotation, can_orange_portal, can_blue_portal)
+		portal_manager.spawn_portal(portal_color, ray_cast_2d.get_collision_point(), rotation, can_orange_portal, can_blue_portal)
 		queue_free()

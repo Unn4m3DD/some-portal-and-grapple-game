@@ -19,10 +19,11 @@ func _input(event: InputEvent) -> void:
 	var mouse_rotation = (acos(mouse_vector.dot(Vector2.RIGHT))) * sign(mouse_vector.y)
 	var direction := Vector2.RIGHT.rotated(mouse_rotation)
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
 			if event.pressed:
 				var portal_projectile := portal_projectile_scene.instantiate()
 				portal_projectile.position = player.global_position
 				portal_projectile.rotation = atan2(direction.y, direction.x)
 				portal_projectile.direction = direction
+				portal_projectile.portal_color = 'blue' if event.button_index == MOUSE_BUTTON_LEFT else 'orange'
 				root.add_child(portal_projectile)
