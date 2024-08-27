@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://benp33pscyapr"
-path="res://.godot/imported/Big planet background.png-6beb00db8f063f8109b132313380649e.ctex"
+uid="uid://demy32tkl5ry8"
+path="res://.godot/imported/blue.png-852b26d0e76b8d294149c17025e127ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Background/Big planet background.png"
-dest_files=["res://.godot/imported/Big planet background.png-6beb00db8f063f8109b132313380649e.ctex"]
+source_file="res://sprites/portals/blue.png"
+dest_files=["res://.godot/imported/blue.png-852b26d0e76b8d294149c17025e127ef.ctex"]
 
 [params]
 

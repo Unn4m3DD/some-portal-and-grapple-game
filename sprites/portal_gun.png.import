@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y8vbucrwjd2r"
-path="res://.godot/imported/Companion cube blink.png-faa65c5d6e8db8fe1d6c7a927b5ad18a.ctex"
+uid="uid://8w6nkqhrpj2w"
+path="res://.godot/imported/portal_gun.png-f41b7417e4e63efff84d9b6329c4be48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/CompanionCube/Companion cube blink.png"
-dest_files=["res://.godot/imported/Companion cube blink.png-faa65c5d6e8db8fe1d6c7a927b5ad18a.ctex"]
+source_file="res://sprites/portal_gun.png"
+dest_files=["res://.godot/imported/portal_gun.png-f41b7417e4e63efff84d9b6329c4be48.ctex"]
 
 [params]
 

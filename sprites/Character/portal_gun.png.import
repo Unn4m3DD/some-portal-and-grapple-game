@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4eldxyvbjkiu"
-path="res://.godot/imported/Tilemap.png-8bff2c921638842257b8ce570ce1dce2.ctex"
+uid="uid://8w6nkqhrpj2w"
+path="res://.godot/imported/portal_gun.png-5ff8212e5a223baf1071e874cbaef9a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Background/Tilemap.png"
-dest_files=["res://.godot/imported/Tilemap.png-8bff2c921638842257b8ce570ce1dce2.ctex"]
+source_file="res://sprites/character/portal_gun.png"
+dest_files=["res://.godot/imported/portal_gun.png-5ff8212e5a223baf1071e874cbaef9a7.ctex"]
 
 [params]
 

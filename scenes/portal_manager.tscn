@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/portal_manager.gd" id="1_x7cqm"]
 [ext_resource type="Script" path="res://scripts/portal.gd" id="2_85teo"]
-[ext_resource type="Texture2D" uid="uid://demy32tkl5ry8" path="res://sprites/Portals/blue_portal_idle.png" id="3_g1rk3"]
+[ext_resource type="Texture2D" uid="uid://demy32tkl5ry8" path="res://sprites/portals/blue.png" id="3_g1rk3"]
 [ext_resource type="Shader" path="res://shaders/portal_manager.gdshader" id="4_6nvbp"]
-[ext_resource type="Texture2D" uid="uid://btnor34w22d7o" path="res://sprites/Portals/orange_portal_idle.png" id="4_uqbhi"]
+[ext_resource type="Texture2D" uid="uid://btnor34w22d7o" path="res://sprites/portals/orange.png" id="4_uqbhi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_phbmu"]
 shader = ExtResource("4_6nvbp")
