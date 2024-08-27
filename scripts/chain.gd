@@ -1,4 +1,5 @@
 extends Node2D
+@onready var timer: Timer = $Timer
 
 @onready var links := $Links
 var direction := Vector2(0, 0)
@@ -17,6 +18,7 @@ func shoot(dir: Vector2) -> void:
 func release() -> void:
 	flying = false
 	hooked = false
+	timer.stop()
 
 func _process(_delta: float) -> void:
 	self.visible = flying or hooked
@@ -32,6 +34,11 @@ func _physics_process(_delta: float) -> void:
 	$Tip.global_position = tip
 	if flying:
 		if $Tip.move_and_collide(direction * SPEED):
+			timer.start()
 			hooked = true
 			flying = false
 	tip = $Tip.global_position
+
+
+func _on_timer_timeout() -> void:
+	release()

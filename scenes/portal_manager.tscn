@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://digt8gbgjtjp2"]
+[gd_scene load_steps=69 format=3 uid="uid://digt8gbgjtjp2"]
 
 [ext_resource type="Script" path="res://scripts/portal_manager.gd" id="1_x7cqm"]
 [ext_resource type="Script" path="res://scripts/portal.gd" id="2_85teo"]
@@ -204,6 +204,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vf5je"]
 size = Vector2(20, 150)
 
+[sub_resource type="Animation" id="Animation_gn42f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.085, 0.085)]
+}
+
 [sub_resource type="Animation" id="Animation_qjcsk"]
 resource_name = "portal_spawn"
 length = 0.4
@@ -220,32 +235,20 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(0.1, 0.1), Vector2(0.085, 0.085), Vector2(0.09, 0.09), Vector2(0.085, 0.085)]
 }
 
-[sub_resource type="Animation" id="Animation_gn42f"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.085, 0.085)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2tymw"]
 _data = {
 "RESET": SubResource("Animation_gn42f"),
 "portal_spawn": SubResource("Animation_qjcsk")
 }
+
 [sub_resource type="Gradient" id="Gradient_ddegg"]
-offsets = PackedFloat32Array(0, 0.694805)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.337662, 0.512987, 0.694805)
+colors = PackedColorArray(1, 1, 1, 1, 0.25, 0.25, 0.25, 1, 0.08, 0.08, 0.08, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_p4mj1"]
 gradient = SubResource("Gradient_ddegg")
+width = 52
+height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -504,6 +507,7 @@ shape = SubResource("RectangleShape2D_kl8in")
 libraries = {
 "": SubResource("AnimationLibrary_2tymw")
 }
+
 [node name="PointLight2D2" type="PointLight2D" parent="OrangePortal"]
 position = Vector2(1.52588e-05, 0)
 scale = Vector2(2.1875, 2.625)
