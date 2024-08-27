@@ -1,0 +1,260 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+      integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script defer>
+      addEventListener("DOMContentLoaded", (event) => {
+        var node = document.getElementById("my-node");
+
+        domtoimage
+          .toPng(node)
+          .then(function (dataUrl) {
+            var img = new Image();
+            img.src = dataUrl;
+            document.body.appendChild(img);
+          })
+          .catch(function (error) {
+            console.error("oops, something went wrong!", error);
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="h-screen w-screen flex items-center justify-center">
+      <div class="w-[calc(256px*4)] grid-cols-4 grid" id="my-node">
+        <div class="w-[256px] h-[256px] bg-[#6F6A5E]"></div>
+        <div class="w-[256px] h-[256px] bg-[#1F2829]"></div>
+        <div class="w-[256px] h-[256px] bg-transparent"></div>
+        <div class="w-[256px] h-[256px] bg-[#CCD0D1]"></div>
+        <div
+          class="w-[256px] h-[256px] bg-[#CCD0D1] items-center justify-center flex relative"
+        >
+          <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+
+          <div
+            class="flex w-[52px] h-[52px] rounded-3xl bg-[#1F2829] z-10 items-center justify-center"
+          >
+            <div class="flex h-6 w-6 rounded-full bg-[#53CBff] z-10"></div>
+          </div>
+        </div>
+        <div
+          class="w-[256px] h-[256px] bg-[#CCD0D1] items-center justify-center flex"
+        >
+          <div
+            class="w-full h-[52px] bg-[#1F2829] flex items-center justify-center"
+          >
+            <div class="flex h-6 w-6 rounded-full bg-[#53CBff]"></div>
+          </div>
+        </div>
+        <div
+          class="w-[256px] h-[256px] bg-[#CCD0D1] items-center justify-center flex relative"
+        >
+          <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+          <div
+            class="absolute top-0 right-1/2 translate-x-1/2 h-1/2 w-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+          <div
+            class="absolute top-0 right-0 h-1/2 w-1/2 bg-[#1F2829] flex items-center justify-center"
+          >
+            <div
+              class="absolute top-0 right-0 h-[calc(100%-52px/2)] w-[calc(100%-52px/2)] bg-[#CCD0D1] flex items-center justify-center rounded-bl-3xl"
+            ></div>
+          </div>
+          <div
+            class="flex w-[52px] h-[52px] rounded-3xl bg-[#1F2829] z-10 items-center justify-center"
+          >
+            <div class="flex h-6 w-6 rounded-full bg-[#53CBff] z-10"></div>
+          </div>
+        </div>
+        <div
+          class="w-[256px] h-[256px] bg-[#CCD0D1] items-center justify-center flex relative"
+        >
+          <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-full h-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+          <div
+            class="absolute top-0 right-1/2 translate-x-1/2 h-1/2 w-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+          <div
+            class="absolute top-0 right-0 h-1/2 w-1/2 bg-[#1F2829] flex items-center justify-center"
+          >
+            <div
+              class="absolute top-0 right-0 h-[calc(100%-52px/2)] w-[calc(100%-52px/2)] bg-[#CCD0D1] flex items-center justify-center rounded-bl-3xl"
+            ></div>
+          </div>
+          <div
+            class="absolute top-0 left-0 h-1/2 w-1/2 bg-[#1F2829] flex items-center justify-center"
+          >
+            <div
+              class="absolute top-0 left-0 h-[calc(100%-52px/2)] w-[calc(100%-52px/2)] bg-[#CCD0D1] flex items-center justify-center rounded-br-3xl"
+            ></div>
+          </div>
+          <div
+            class="flex w-[52px] h-[52px] rounded-3xl bg-[#1F2829] z-10 items-center justify-center"
+          >
+            <div class="flex h-6 w-6 rounded-full bg-[#53CBff] z-10"></div>
+          </div>
+        </div>
+
+        <div
+          class="w-[256px] h-[256px] bg-[#CCD0D1] items-center justify-center flex relative"
+        >
+          <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+
+          <div
+            class="flex w-[52px] h-[52px] rounded-3xl bg-[#1F2829] z-10 items-center justify-center"
+          >
+            <div class="flex h-6 w-6 rounded-full bg-[#e9ad33] z-10"></div>
+          </div>
+        </div>
+        <div
+          class="w-[256px] h-[256px] bg-[#CCD0D1] items-center justify-center flex"
+        >
+          <div
+            class="w-full h-[52px] bg-[#1F2829] flex items-center justify-center"
+          >
+            <div class="flex h-6 w-6 rounded-full bg-[#e9ad33]"></div>
+          </div>
+        </div>
+        <div
+          class="w-[256px] h-[256px] bg-[#CCD0D1] items-center justify-center flex relative"
+        >
+          <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+          <div
+            class="absolute top-0 right-1/2 translate-x-1/2 h-1/2 w-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+          <div
+            class="absolute top-0 right-0 h-1/2 w-1/2 bg-[#1F2829] flex items-center justify-center"
+          >
+            <div
+              class="absolute top-0 right-0 h-[calc(100%-52px/2)] w-[calc(100%-52px/2)] bg-[#CCD0D1] flex items-center justify-center rounded-bl-3xl"
+            ></div>
+          </div>
+          <div
+            class="flex w-[52px] h-[52px] rounded-3xl bg-[#1F2829] z-10 items-center justify-center"
+          >
+            <div class="flex h-6 w-6 rounded-full bg-[#e9ad33] z-10"></div>
+          </div>
+        </div>
+        <div
+          class="w-[256px] h-[256px] bg-[#CCD0D1] items-center justify-center flex relative"
+        >
+          <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-full h-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+          <div
+            class="absolute top-0 right-1/2 translate-x-1/2 h-1/2 w-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+          <div
+            class="absolute top-0 right-0 h-1/2 w-1/2 bg-[#1F2829] flex items-center justify-center"
+          >
+            <div
+              class="absolute top-0 right-0 h-[calc(100%-52px/2)] w-[calc(100%-52px/2)] bg-[#CCD0D1] flex items-center justify-center rounded-bl-3xl"
+            ></div>
+          </div>
+          <div
+            class="absolute top-0 left-0 h-1/2 w-1/2 bg-[#1F2829] flex items-center justify-center"
+          >
+            <div
+              class="absolute top-0 left-0 h-[calc(100%-52px/2)] w-[calc(100%-52px/2)] bg-[#CCD0D1] flex items-center justify-center rounded-br-3xl"
+            ></div>
+          </div>
+          <div
+            class="flex w-[52px] h-[52px] rounded-3xl bg-[#1F2829] z-10 items-center justify-center"
+          >
+            <div class="flex h-6 w-6 rounded-full bg-[#e9ad33] z-10"></div>
+          </div>
+        </div>
+
+        <div
+          class="w-[256px] h-[256px] bg-[#CCD0D1] items-center justify-center flex relative"
+        >
+          <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+
+          <div
+            class="flex w-[52px] h-[52px] rounded-3xl bg-[#1F2829] z-10 items-center justify-center"
+          >
+            <div class="flex h-6 w-6 rounded-full bg-[#4dffde] z-10"></div>
+          </div>
+        </div>
+        <div
+          class="w-[256px] h-[256px] bg-[#CCD0D1] items-center justify-center flex"
+        >
+          <div
+            class="w-full h-[52px] bg-[#1F2829] flex items-center justify-center"
+          >
+            <div class="flex h-6 w-6 rounded-full bg-[#4dffde]"></div>
+          </div>
+        </div>
+        <div
+          class="w-[256px] h-[256px] bg-[#CCD0D1] items-center justify-center flex relative"
+        >
+          <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+          <div
+            class="absolute top-0 right-1/2 translate-x-1/2 h-1/2 w-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+          <div
+            class="absolute top-0 right-0 h-1/2 w-1/2 bg-[#1F2829] flex items-center justify-center"
+          >
+            <div
+              class="absolute top-0 right-0 h-[calc(100%-52px/2)] w-[calc(100%-52px/2)] bg-[#CCD0D1] flex items-center justify-center rounded-bl-3xl"
+            ></div>
+          </div>
+          <div
+            class="flex w-[52px] h-[52px] rounded-3xl bg-[#1F2829] z-10 items-center justify-center"
+          >
+            <div class="flex h-6 w-6 rounded-full bg-[#4dffde] z-10"></div>
+          </div>
+        </div>
+        <div
+          class="w-[256px] h-[256px] bg-[#CCD0D1] items-center justify-center flex relative"
+        >
+          <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-full h-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+          <div
+            class="absolute top-0 right-1/2 translate-x-1/2 h-1/2 w-[52px] bg-[#1F2829] flex items-center justify-center"
+          ></div>
+          <div
+            class="absolute top-0 right-0 h-1/2 w-1/2 bg-[#1F2829] flex items-center justify-center"
+          >
+            <div
+              class="absolute top-0 right-0 h-[calc(100%-52px/2)] w-[calc(100%-52px/2)] bg-[#CCD0D1] flex items-center justify-center rounded-bl-3xl"
+            ></div>
+          </div>
+          <div
+            class="absolute top-0 left-0 h-1/2 w-1/2 bg-[#1F2829] flex items-center justify-center"
+          >
+            <div
+              class="absolute top-0 left-0 h-[calc(100%-52px/2)] w-[calc(100%-52px/2)] bg-[#CCD0D1] flex items-center justify-center rounded-br-3xl"
+            ></div>
+          </div>
+          <div
+            class="flex w-[52px] h-[52px] rounded-3xl bg-[#1F2829] z-10 items-center justify-center"
+          >
+            <div class="flex h-6 w-6 rounded-full bg-[#4dffde] z-10"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
