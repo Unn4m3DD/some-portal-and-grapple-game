@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://8y8p2i5ocda6"]
+[gd_scene load_steps=11 format=4 uid="uid://8y8p2i5ocda6"]
 
 [ext_resource type="PackedScene" uid="uid://b7e7nt2r1s5yi" path="res://scenes/player.tscn" id="1_bqpxw"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="2_usl5j"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://brghi2r6dmk6k" path="res://sprites/Sky background.png" id="5_isxi8"]
 [ext_resource type="Texture2D" uid="uid://benp33pscyapr" path="res://sprites/Big planet background.png" id="6_8ahws"]
 [ext_resource type="Texture2D" uid="uid://cw2o23vc2h7i8" path="res://sprites/Small planet background.png" id="7_tgic8"]
+[ext_resource type="Texture2D" uid="uid://n43dnyc6nteh" path="res://sprites/monitor.png" id="8_mgomq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yo5gn"]
 texture = ExtResource("4_twun6")
@@ -132,3 +133,10 @@ position = Vector2(-880, -1706)
 scale = Vector2(1.6644, 1.6644)
 texture = ExtResource("7_tgic8")
 centered = false
+
+[node name="BackgroundObjects" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundObjects"]
+position = Vector2(444, 453)
+scale = Vector2(0.183426, 0.183426)
+texture = ExtResource("8_mgomq")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bglc3fm6qiwoe"
-path="res://.godot/imported/Tilemap.png-ec3eabcafa513512b6e0c092dd2195ee.ctex"
+uid="uid://n43dnyc6nteh"
+path="res://.godot/imported/monitor.png-8faedabdf5872b39ab665333c644ea74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/Tilemap.png"
-dest_files=["res://.godot/imported/Tilemap.png-ec3eabcafa513512b6e0c092dd2195ee.ctex"]
+source_file="res://sprites/monitor.png"
+dest_files=["res://.godot/imported/monitor.png-8faedabdf5872b39ab665333c644ea74.ctex"]
 
 [params]
 
