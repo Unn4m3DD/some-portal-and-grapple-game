@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw2o23vc2h7i8"
-path="res://.godot/imported/Small planet background.png-0dd982958c85de3aac84818c2b5c1f7b.ctex"
+uid="uid://bj5t800kde3ns"
+path="res://.godot/imported/Companion cube uwu.png-53de064790a6f3840fa30e7091ff2eee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Small planet background.png"
-dest_files=["res://.godot/imported/Small planet background.png-0dd982958c85de3aac84818c2b5c1f7b.ctex"]
+source_file="res://sprites/CompanionCube/Companion cube uwu.png"
+dest_files=["res://.godot/imported/Companion cube uwu.png-53de064790a6f3840fa30e7091ff2eee.ctex"]
 
 [params]
 
