@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b7e7nt2r1s5yi" path="res://scenes/player.tscn" id="1_bqpxw"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="2_usl5j"]
 [ext_resource type="PackedScene" uid="uid://digt8gbgjtjp2" path="res://scenes/portal_manager.tscn" id="3_xn3r8"]
-[ext_resource type="Texture2D" uid="uid://d4eldxyvbjkiu" path="res://sprites/Tilemap.png" id="4_twun6"]
+[ext_resource type="Texture2D" uid="uid://d4eldxyvbjkiu" path="res://sprites/Background/Tilemap.png" id="4_twun6"]
 [ext_resource type="Texture2D" uid="uid://brghi2r6dmk6k" path="res://sprites/Background/Sky background.png" id="5_isxi8"]
 [ext_resource type="Texture2D" uid="uid://benp33pscyapr" path="res://sprites/Background/Big planet background.png" id="6_8ahws"]
 [ext_resource type="Texture2D" uid="uid://cw2o23vc2h7i8" path="res://sprites/Background/Small planet background.png" id="7_tgic8"]

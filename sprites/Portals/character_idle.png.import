@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de3kvpdy8utf7"
-path="res://.godot/imported/portals_idle.png-bb5400cad33c78f65c171636d17eca3e.ctex"
+uid="uid://b4qbg1ns3av3p"
+path="res://.godot/imported/character_idle.png-356973f0cdcbecf03838d1a3935529ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/portals_idle.png"
-dest_files=["res://.godot/imported/portals_idle.png-bb5400cad33c78f65c171636d17eca3e.ctex"]
+source_file="res://sprites/Portals/character_idle.png"
+dest_files=["res://.godot/imported/character_idle.png-356973f0cdcbecf03838d1a3935529ee.ctex"]
 
 [params]
 
