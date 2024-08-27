@@ -6,8 +6,13 @@ extends Node2D
 
 var current_portal := 'orange';
 
-func spawn_portal(new_position: Vector2, new_rotation: float) -> void:
+func spawn_portal(new_position: Vector2, new_rotation: float, can_orange_portal: bool, can_blue_portal: bool) -> void:
 	var new_portal: Area2D
+	if not can_orange_portal and current_portal == 'orange':
+		return
+	if not can_blue_portal and current_portal == 'blue':
+		return
+
 	match current_portal:
 		'orange':
 			new_portal = orange_portal

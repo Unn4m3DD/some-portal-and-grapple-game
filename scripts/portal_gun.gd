@@ -12,7 +12,7 @@ const portal_projectile_scene := preload("res://scenes/portal_projectile.tscn")
 func _process(_delta: float) -> void:
 	var mouse_vector = (get_global_mouse_position() - player.position).normalized()
 	portal_gun_container.rotation = (acos(mouse_vector.dot(Vector2.RIGHT))) * sign(mouse_vector.y)
-	
+
 	
 func _input(event: InputEvent) -> void:
 	var mouse_vector = (get_global_mouse_position() - player.position).normalized()
@@ -22,7 +22,7 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				var portal_projectile := portal_projectile_scene.instantiate()
-				portal_projectile.position = portal_gun.global_position
+				portal_projectile.position = player.global_position
 				portal_projectile.rotation = atan2(direction.y, direction.x)
 				portal_projectile.direction = direction
 				root.add_child(portal_projectile)
