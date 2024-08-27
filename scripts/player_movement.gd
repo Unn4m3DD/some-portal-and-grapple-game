@@ -164,3 +164,7 @@ func _physics_process(delta: float) -> void:
 		has_double_jump_charge = true
 	prev.hooked = $Chain.hooked
 	move_and_slide()
+
+
+func _on_monitor_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.

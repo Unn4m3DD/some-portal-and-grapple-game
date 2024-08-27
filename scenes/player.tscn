@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b7e7nt2r1s5yi"]
+[gd_scene load_steps=37 format=3 uid="uid://b7e7nt2r1s5yi"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_cblew"]
 [ext_resource type="Script" path="res://scripts/portal_gun.gd" id="2_aye80"]
@@ -229,6 +229,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_qnbs7"]
 radius = 18.1108
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_b02up"]
+radius = 385.032
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(1.2, 1.2)
 collision_layer = 2
@@ -247,19 +250,16 @@ frame = 23
 frame_progress = 0.516526
 offset = Vector2(0, -689.71)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Hand" type="Node2D" parent="."]
 position = Vector2(0, -17)
 scale = Vector2(2, 2)
-collision_layer = 2
 script = ExtResource("2_aye80")
 
-[node name="portal_gun" type="Sprite2D" parent="CharacterBody2D"]
+[node name="portal_gun" type="Sprite2D" parent="Hand"]
 position = Vector2(21, 0)
 rotation = -2.13887
 scale = Vector2(0.0244648, 0.0244648)
 texture = ExtResource("4_gk7nr")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/portal_gun"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -320,3 +320,13 @@ collide_with_areas = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.56509
 shape = SubResource("CircleShape2D_qnbs7")
+
+[node name="ObjectPickup" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="ObjectPickup"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectPickup/Area2D"]
+position = Vector2(0, -25.8333)
+shape = SubResource("CircleShape2D_b02up")

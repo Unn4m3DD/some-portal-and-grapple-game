@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Node2D
 
 @onready var root := get_node("/root/");
 
