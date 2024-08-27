@@ -240,6 +240,14 @@ _data = {
 "RESET": SubResource("Animation_gn42f"),
 "portal_spawn": SubResource("Animation_qjcsk")
 }
+[sub_resource type="Gradient" id="Gradient_ddegg"]
+offsets = PackedFloat32Array(0, 0.694805)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p4mj1"]
+gradient = SubResource("Gradient_ddegg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2y2op"]
 shader = ExtResource("4_6nvbp")
@@ -457,12 +465,21 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BluePortal"]
+visible = false
 shape = SubResource("RectangleShape2D_vf5je")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BluePortal"]
 libraries = {
 "": SubResource("AnimationLibrary_2tymw")
 }
+
+[node name="PointLight2D" type="PointLight2D" parent="BluePortal"]
+position = Vector2(1.90735e-06, -3.8147e-06)
+scale = Vector2(2.1875, 2.625)
+color = Color(0.574407, 0.73268, 1, 1)
+energy = 0.5
+range_z_min = -1
+texture = SubResource("GradientTexture2D_p4mj1")
 
 [node name="OrangePortal" type="Area2D" parent="."]
 position = Vector2(-40, 0)
@@ -487,3 +504,10 @@ shape = SubResource("RectangleShape2D_kl8in")
 libraries = {
 "": SubResource("AnimationLibrary_2tymw")
 }
+[node name="PointLight2D2" type="PointLight2D" parent="OrangePortal"]
+position = Vector2(1.52588e-05, 0)
+scale = Vector2(2.1875, 2.625)
+color = Color(1, 0.701961, 0.188235, 1)
+energy = 0.5
+range_z_min = -1
+texture = SubResource("GradientTexture2D_p4mj1")
