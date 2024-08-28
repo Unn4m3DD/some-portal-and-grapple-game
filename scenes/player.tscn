@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bnul4wsop1b1v" path="res://scenes/chain.tscn" id="2_np5ty"]
 [ext_resource type="Texture2D" uid="uid://b4qbg1ns3av3p" path="res://sprites/portals/character_idle.png" id="3_bwaek"]
 [ext_resource type="Texture2D" uid="uid://8w6nkqhrpj2w" path="res://sprites/portal_gun.png" id="4_gk7nr"]
-[ext_resource type="PackedScene" uid="uid://wd8jec0j8pg8" path="res://scenes/teleportable.tscn" id="6_5pni0"]
+[ext_resource type="PackedScene" path="res://scenes/teleportable.tscn" id="6_5pni0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kuigd"]
 atlas = ExtResource("3_bwaek")
