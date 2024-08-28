@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://8y8p2i5ocda6"]
+[gd_scene load_steps=29 format=4 uid="uid://8y8p2i5ocda6"]
 
 [ext_resource type="PackedScene" uid="uid://b7e7nt2r1s5yi" path="res://scenes/player.tscn" id="1_bqpxw"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="2_usl5j"]
@@ -12,7 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dqd3jb3es6xkj" path="res://scenes/highlighter.tscn" id="8_w237a"]
 [ext_resource type="PackedScene" path="res://scenes/companion_cube.tscn" id="11_nm4nk"]
 [ext_resource type="PackedScene" uid="uid://b0gemn6pev7o4" path="res://scenes/mouse.tscn" id="11_ysqm6"]
-[ext_resource type="Texture2D" uid="uid://bhdm2h0kasr1d" path="res://sprites/background/door_base.png" id="13_8yicc"]
+[ext_resource type="Texture2D" uid="uid://dq55v0uii3mqg" path="res://sprites/background/door_base.png" id="13_8yicc"]
+[ext_resource type="Texture2D" uid="uid://br2fprxcjrjx4" path="res://sprites/background/door.png" id="13_dkqu1"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v1tst"]
 polygon = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
@@ -293,9 +294,17 @@ position = Vector2(5025, 640)
 
 [node name="Sprite2D" type="Sprite2D" parent="Door"]
 position = Vector2(0.317, 256)
-texture = ExtResource("13_8yicc")
+texture = ExtResource("13_dkqu1")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Door"]
 position = Vector2(0.317, 0)
+rotation = 3.14159
+texture = ExtResource("13_dkqu1")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Door"]
+position = Vector2(0, 256)
+texture = ExtResource("13_8yicc")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Door"]
 rotation = 3.14159
 texture = ExtResource("13_8yicc")
