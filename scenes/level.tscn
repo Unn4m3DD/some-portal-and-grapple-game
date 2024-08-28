@@ -1,14 +1,15 @@
-[gd_scene load_steps=25 format=4 uid="uid://8y8p2i5ocda6"]
+[gd_scene load_steps=31 format=4 uid="uid://8y8p2i5ocda6"]
 
 [ext_resource type="PackedScene" uid="uid://b7e7nt2r1s5yi" path="res://scenes/player.tscn" id="1_bqpxw"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="2_usl5j"]
 [ext_resource type="PackedScene" uid="uid://digt8gbgjtjp2" path="res://scenes/portal_manager.tscn" id="3_xn3r8"]
-[ext_resource type="Texture2D" path="res://sprites/tilemap.png" id="4_twun6"]
+[ext_resource type="Texture2D" uid="uid://d4eldxyvbjkiu" path="res://sprites/background/tilemap.png" id="4_twun6"]
 [ext_resource type="Texture2D" uid="uid://brghi2r6dmk6k" path="res://sprites/background/sky.png" id="5_isxi8"]
 [ext_resource type="Texture2D" uid="uid://benp33pscyapr" path="res://sprites/background/big_planet.png" id="6_8ahws"]
 [ext_resource type="Texture2D" uid="uid://cw2o23vc2h7i8" path="res://sprites/background/small_planet.png" id="7_tgic8"]
 [ext_resource type="Texture2D" uid="uid://n43dnyc6nteh" path="res://sprites/monitor.png" id="8_mgomq"]
 [ext_resource type="PackedScene" uid="uid://dqd3jb3es6xkj" path="res://scenes/highlighter.tscn" id="8_w237a"]
+[ext_resource type="Texture2D" uid="uid://2332oo1l512r" path="res://sprites/companion_cube/companion_cube.png" id="10_88bxo"]
 [ext_resource type="PackedScene" uid="uid://b0gemn6pev7o4" path="res://scenes/mouse.tscn" id="11_ysqm6"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v1tst"]
@@ -160,12 +161,63 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erkp7"]
 size = Vector2(136, 166)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjdhx"]
+atlas = ExtResource("10_88bxo")
+region = Rect2(0, 650, 847, 650)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i754i"]
+atlas = ExtResource("10_88bxo")
+region = Rect2(847, 0, 847, 650)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60tvt"]
+atlas = ExtResource("10_88bxo")
+region = Rect2(0, 0, 847, 650)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgq2n"]
+atlas = ExtResource("10_88bxo")
+region = Rect2(847, 650, 847, 650)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7oli"]
+atlas = ExtResource("10_88bxo")
+region = Rect2(0, 1300, 847, 650)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_vdfrm"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjdhx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i754i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60tvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i754i")
+}, {
+"duration": 45.0,
+"texture": SubResource("AtlasTexture_yjdhx")
+}],
 "loop": true,
-"name": &"default",
-"speed": 31.0
+"name": &"blink",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgq2n")
+}],
+"loop": true,
+"name": &"smile",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7oli")
+}],
+"loop": true,
+"name": &"uwu",
+"speed": 5.0
 }]
 
 [node name="Level" type="Node2D"]
@@ -261,7 +313,7 @@ position = Vector2(0, 2)
 position = Vector2(899, 488)
 scale = Vector2(0.0909993, 0.0909993)
 sprite_frames = SubResource("SpriteFrames_vdfrm")
-autoplay = "default"
-frame_progress = 0.74094
+animation = &"uwu"
+autoplay = "blink"
 
 [node name="Mouse" parent="." instance=ExtResource("11_ysqm6")]

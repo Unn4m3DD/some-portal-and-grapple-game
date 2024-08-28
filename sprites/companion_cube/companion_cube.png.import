@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://geffdts5uuxc"
-path="res://.godot/imported/smile.png-389961afc11c0ffa9237d513b0e4adf4.ctex"
+uid="uid://2332oo1l512r"
+path="res://.godot/imported/companion_cube.png-5520e11b073218064d00c2c68395bce3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/companion_cube/smile.png"
-dest_files=["res://.godot/imported/smile.png-389961afc11c0ffa9237d513b0e4adf4.ctex"]
+source_file="res://sprites/companion_cube/companion_cube.png"
+dest_files=["res://.godot/imported/companion_cube.png-5520e11b073218064d00c2c68395bce3.ctex"]
 
 [params]
 
