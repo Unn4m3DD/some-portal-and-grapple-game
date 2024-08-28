@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var root := get_node("/root/");
-@onready var portal_manager := $ / root / Level / PortalManager
+@onready var portal_manager := $/root/Level/PortalManager
 @onready var ray_cast_2d := $RayCast2D
 
 const PORTAL_PROJECTILE_BLUE = preload("res://materials/portal_projectile_blue.tres")
@@ -12,10 +12,12 @@ const speed := 2500.0
 var box_scene := preload("res://scenes/box.tscn")
 var portal_color := ''
 
-func _process(delta: float) -> void:
+func _ready():
 	$Projectile2.process_material = PORTAL_PROJECTILE_BLUE if portal_color == "blue" else PORTAL_PROJECTILE_ORANGE
+
+func _process(delta: float) -> void:
 	position += direction * speed * delta
-	if ray_cast_2d.is_colliding():
+	if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider() is TileMapLayer:
 		var other_body: TileMapLayer = ray_cast_2d.get_collider()
 		var tile_data = other_body.get_cell_tile_data(other_body.get_coords_for_body_rid(ray_cast_2d.get_collider_rid()))
 		if not tile_data:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0gemn6pev7o4"]
+[gd_scene load_steps=4 format=3 uid="uid://b0gemn6pev7o4"]
 
 [ext_resource type="Script" path="res://scenes/mouse.gd" id="1_0mccs"]
+[ext_resource type="Texture2D" uid="uid://cblvqv578uc13" path="res://sprites/cursor.png" id="2_4ekcu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ypmrw"]
 
@@ -11,6 +12,10 @@ script = ExtResource("1_0mccs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ypmrw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.600001, 0.600001)
+texture = ExtResource("2_4ekcu")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

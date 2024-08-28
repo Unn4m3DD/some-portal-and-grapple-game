@@ -3,37 +3,6 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-@onready var ray_right1: RayCast2D = $RayCasts/RayRight1
-@onready var ray_left1: RayCast2D = $RayCasts/RayLeft1
-@onready var ray_top1: RayCast2D = $RayCasts/RayTop1
-@onready var ray_bottom1: RayCast2D = $RayCasts/RayBottom1
-
-@onready var ray_right2: RayCast2D = $RayCasts/RayRight2
-@onready var ray_left2: RayCast2D = $RayCasts/RayLeft2
-@onready var ray_top2: RayCast2D = $RayCasts/RayTop2
-@onready var ray_bottom2: RayCast2D = $RayCasts/RayBottom2
-@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@onready var collider_initial_position: Vector2 = collision_shape_2d.position
-
-@onready var rays = {
-	right = [ray_right1, ray_right2],
-	left = [ray_left1, ray_left2],
-	top = [ray_top1, ray_top2],
-	bottom = [ray_bottom1, ray_bottom2],
-}
-var teleport_mutex = {
-	right = false,
-	left = false,
-	top = false,
-	bottom = false,
-}
-var opposite = {
-	right = 'left',
-	left = 'right',
-	top = 'bottom',
-	bottom = 'top',
-}
-
 
 var chain_velocity := Vector2(0, 0)
 var has_double_jump_charge := false
@@ -51,7 +20,6 @@ const config := {
 	squish = .8,
 	coyote_time_ms = 200,
 	jump_buffering_time_ms = 200,
-	distance_to_portal_before_tp = 25,
 	disabled_controls_after_tp_ms = 200,
 	chain_velocity = 120.0,
 	maintain_momentum_after_hook_ms = 500,
@@ -79,39 +47,7 @@ func _input(event: InputEvent) -> void:
 
 var last_teleport_ms := 0
 
-func _process(_delta: float) -> void:
-	var no_colision = true
-	for ray_key in rays:
-		for ray in rays[ray_key]:
-			if ray.is_colliding():
-				no_colision = false
-				var colision_ray = ray.get_collision_point() - ray.global_position
-				var portal_is_parallel_to_ray = is_zero_approx(Vector2.RIGHT.rotated(ray.get_collider().rotation).cross(colision_ray))
-				if portal_is_parallel_to_ray:
-					var distance = ray.get_collision_point().distance_to(ray.global_position)
-					if distance > config.distance_to_portal_before_tp:
-						collision_shape_2d.position = collider_initial_position + ray.target_position.normalized() * (distance - ray.target_position.length())
-					elif not teleport_mutex[ray_key] and not teleport_mutex[opposite[ray_key]]:
-						var current_portal = ray.get_collider();
-						var other_portal = current_portal.other_portal
-						velocity = velocity.length() * Vector2.RIGHT.rotated(other_portal.rotation)
-						collision_shape_2d.position = \
-							collider_initial_position + \
-							(ray.target_position.normalized() * (distance - ray.target_position.length())) \
-							.rotated(current_portal.rotation - other_portal.rotation)
-						last_teleport_ms = Time.get_ticks_msec()
-						teleport_mutex[opposite[ray_key]] = true
-						teleport_mutex[ray_key] = true
-						global_position = other_portal.global_position + velocity.normalized() * 30
-						has_double_jump_charge = true
-			else:
-				teleport_mutex[ray_key] = false
-	
-	if no_colision:
-		collision_shape_2d.position = Vector2(
-			move_toward(collision_shape_2d.position.x, collider_initial_position.x, 1),
-			move_toward(collision_shape_2d.position.y, collider_initial_position.y, 1),
-		)
+
 
 func _physics_process(delta: float) -> void:
 	if not $Chain.hooked:
@@ -166,5 +102,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _on_monitor_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+func _on_teleportable_teleported(get_new_position) -> void:
+	var new_params = get_new_position.call(velocity);
+	global_position = new_params.new_position
+	velocity = new_params.new_velocity
+	last_teleport_ms = Time.get_ticks_msec()
+	has_double_jump_charge = true

@@ -1,10 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://b7e7nt2r1s5yi"]
+[gd_scene load_steps=38 format=3 uid="uid://b7e7nt2r1s5yi"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_cblew"]
 [ext_resource type="Script" path="res://scripts/portal_gun.gd" id="2_aye80"]
 [ext_resource type="PackedScene" uid="uid://bnul4wsop1b1v" path="res://scenes/chain.tscn" id="2_np5ty"]
 [ext_resource type="Texture2D" uid="uid://b4qbg1ns3av3p" path="res://sprites/portals/character_idle.png" id="3_bwaek"]
 [ext_resource type="Texture2D" uid="uid://8w6nkqhrpj2w" path="res://sprites/portal_gun.png" id="4_gk7nr"]
+[ext_resource type="PackedScene" uid="uid://wd8jec0j8pg8" path="res://scenes/teleportable.tscn" id="6_5pni0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kuigd"]
 atlas = ExtResource("3_bwaek")
@@ -255,7 +256,7 @@ position = Vector2(0, -17)
 scale = Vector2(2, 2)
 script = ExtResource("2_aye80")
 
-[node name="portal_gun" type="Sprite2D" parent="Hand"]
+[node name="PortalGun" type="Sprite2D" parent="Hand"]
 position = Vector2(21, 0)
 rotation = -2.13887
 scale = Vector2(0.0244648, 0.0244648)
@@ -265,57 +266,6 @@ texture = ExtResource("4_gk7nr")
 libraries = {
 "": SubResource("AnimationLibrary_3smt3")
 }
-
-[node name="RayCasts" type="Node2D" parent="."]
-position = Vector2(0, 13)
-
-[node name="RayLeft1" type="RayCast2D" parent="RayCasts"]
-position = Vector2(5, 4)
-target_position = Vector2(-80, 0)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayLeft2" type="RayCast2D" parent="RayCasts"]
-position = Vector2(5, -30)
-target_position = Vector2(-80, 0)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayRight1" type="RayCast2D" parent="RayCasts"]
-position = Vector2(-5, -30)
-target_position = Vector2(80, 0)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayRight2" type="RayCast2D" parent="RayCasts"]
-position = Vector2(-5, 4)
-target_position = Vector2(80, 0)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayTop1" type="RayCast2D" parent="RayCasts"]
-position = Vector2(17, -8)
-target_position = Vector2(0, -80)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayTop2" type="RayCast2D" parent="RayCasts"]
-position = Vector2(-17, -8)
-target_position = Vector2(0, -80)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayBottom1" type="RayCast2D" parent="RayCasts"]
-position = Vector2(-17, -18)
-target_position = Vector2(0, 80)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayBottom2" type="RayCast2D" parent="RayCasts"]
-position = Vector2(17, -18)
-target_position = Vector2(0, 80)
-collision_mask = 4
-collide_with_areas = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.56509
@@ -330,3 +280,8 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectPickup/Area2D"]
 position = Vector2(0, -25.8333)
 shape = SubResource("CircleShape2D_b02up")
+
+[node name="Teleportable" parent="." node_paths=PackedStringArray("collision_shape_2d") instance=ExtResource("6_5pni0")]
+collision_shape_2d = NodePath("../CollisionShape2D")
+
+[connection signal="teleported" from="Teleportable" to="." method="_on_teleportable_teleported"]

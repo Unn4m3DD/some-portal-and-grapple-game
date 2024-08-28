@@ -4,7 +4,7 @@ extends Node2D
 
 @onready var player := $".."
 @onready var portal_gun_container := $"."
-@onready var portal_gun := $"./portal_gun"
+@onready var portal_gun := $"./PortalGun"
 
 const portal_projectile_scene := preload("res://scenes/portal_projectile.tscn")
 
