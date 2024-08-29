@@ -38,12 +38,7 @@ func _input(event: InputEvent) -> void:
 				get_tree().reload_current_scene()
 			if event.keycode == KEY_P:
 				get_tree().quit()
-		if event.keycode == KEY_SHIFT:
-			if event.pressed:
-				var mouse_vector = (get_global_mouse_position() - position).normalized()
-				$Chain.shoot(mouse_vector)
-			else:
-				$Chain.release()
+			
 
 var last_teleport_ms := 0
 

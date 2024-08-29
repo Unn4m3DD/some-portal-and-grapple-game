@@ -259,7 +259,7 @@ scale = Vector2(6, 6)
 script = ExtResource("2_aye80")
 
 [node name="PortalGun" type="Sprite2D" parent="Hand"]
-position = Vector2(21, 0)
+position = Vector2(55, 0)
 rotation = -2.13887
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("4_gk7nr")

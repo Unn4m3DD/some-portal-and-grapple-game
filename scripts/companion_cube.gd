@@ -10,13 +10,12 @@ var pull_force := 10.0
 
 var is_following := false
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.keycode == KEY_E:
-			if highlighter.is_highlighted:
-				is_following = true
-			elif is_following:
-				is_following = false
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("interact"):
+		if highlighter.is_highlighted:
+			is_following = !is_following
+		elif is_following:
+			is_following = false
 				
 func _ready():
 	timer.timeout.connect(_on_timer_timeout)

@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://jswp02imxdm4"]
+[gd_scene load_steps=7 format=3 uid="uid://jswp02imxdm4"]
 
 [ext_resource type="Script" path="res://scripts/portal_projectile.gd" id="1_f412a"]
 [ext_resource type="Texture2D" uid="uid://okkmvjmab6b6" path="res://sprites/particles/portal_projectile.png" id="2_cbb10"]
-[ext_resource type="Material" uid="uid://dpdhv13nhot00" path="res://materials/portal_projectile_blue.tres" id="2_ebqfa"]
+[ext_resource type="Material" uid="uid://dpdhv13nhot00" path="res://materials/portal_projectile_blue.tres" id="2_vv43h"]
 
 [sub_resource type="Animation" id="Animation_u3t6f"]
 length = 0.001
@@ -42,38 +42,6 @@ _data = {
 "new_animation": SubResource("Animation_mfxvv")
 }
 
-[sub_resource type="Gradient" id="Gradient_7ijef"]
-offsets = PackedFloat32Array(0, 0.135338, 0.586466, 1)
-colors = PackedColorArray(0.981377, 0.290564, 5.77569e-07, 1, 0.922762, 0.531994, 1.34766e-06, 1, 0.891901, 0.612923, 3.85046e-07, 1, 1, 0.917522, 0.742867, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_v7xlj"]
-gradient = SubResource("Gradient_7ijef")
-
-[sub_resource type="Curve" id="Curve_3cq7t"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_msswp"]
-curve = SubResource("Curve_3cq7t")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_icw7p"]
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-spread = 0.0
-initial_velocity_min = -2.0
-initial_velocity_max = 1.0
-gravity = Vector3(0, 0, 0)
-linear_accel_min = -100.0
-linear_accel_max = 100.0
-radial_accel_min = -100.0
-radial_accel_max = 86.67
-scale_min = 0.1
-scale_max = 0.12
-scale_curve = SubResource("CurveTexture_msswp")
-scale_over_velocity_min = 221.21
-scale_over_velocity_max = 442.43
-color_initial_ramp = SubResource("GradientTexture1D_v7xlj")
-
 [node name="portal_projectile" type="Area2D"]
 scale = Vector2(3.84, 3.84)
 script = ExtResource("1_f412a")
@@ -84,7 +52,7 @@ target_position = Vector2(10.9375, 0)
 
 [node name="Projectile2" type="GPUParticles2D" parent="."]
 amount = 500
-process_material = ExtResource("2_ebqfa")
+process_material = ExtResource("2_vv43h")
 texture = ExtResource("2_cbb10")
 lifetime = 0.3
 explosiveness = 0.06
@@ -94,12 +62,3 @@ collision_base_size = 0.0
 libraries = {
 "": SubResource("AnimationLibrary_nffxh")
 }
-
-[node name="ProjectileCollision" type="GPUParticles2D" parent="."]
-visible = false
-amount = 5000
-process_material = SubResource("ParticleProcessMaterial_icw7p")
-texture = ExtResource("2_cbb10")
-lifetime = 0.7
-speed_scale = 3.4
-explosiveness = 1.0

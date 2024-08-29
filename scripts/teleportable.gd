@@ -16,8 +16,10 @@ static var teleport_mutex = {
 }
 
 	
-var dive_into_portal_distance := 20
-var teleport_exit_offset = 30;
+var dive_into_portal_distance := 0
+var teleport_exit_offset = 200;
+var min_out_speed := 1200.0
+var collider_speed := 100
 signal teleported(get_new_position)
 
 @export var collision_shape_2d: CollisionShape2D
@@ -39,36 +41,36 @@ func can_teleport() -> bool:
 	return true
 
 func _process(_delta: float) -> void:
+	force_shapecast_update()
 	if !is_colliding():
 		teleport_mutex[ray_dir] = false
 		return
 	var ray_vector := target_position - position
 	var collision_index: int = floor(collision_result.size() / 2.);
 	var portal := get_collider(collision_index)
+	if not 'other_portal' in portal: return
 	var other_portal = portal.other_portal
 	var portal_normal := Vector2.RIGHT.rotated(portal.rotation)
-	var portal_is_parallel_to_ray := portal_normal.rotated(PI).angle_to(target_position) < PI / 4
+	var portal_is_parallel_to_ray := abs(portal_normal.rotated(PI).angle_to(ray_vector)) as float < PI / 4
 	if !portal_is_parallel_to_ray: return
 	var collision_point := get_collision_point(collision_index)
 	var collision_distance := collision_point.distance_to(global_position) * sign(ray_vector.dot(collision_point - global_position)) as int
 	var parent_collision_shape_offset_ammount: int = max(target_position.length() - collision_distance, 0)
 	var parent_collision_shape_offset := parent_collision_shape_offset_ammount * portal_normal
-	print(parent_collision_shape_offset)
-	collision_shape_2d.position = collider_initial_position + parent_collision_shape_offset
-	if -collision_distance > dive_into_portal_distance and can_teleport():
-		print(
-			parent_collision_shape_offset,
-			portal.rotation - other_portal.rotation,
-			parent_collision_shape_offset.rotated(other_portal.rotation - portal.rotation)
-		)
+	
+	collision_shape_2d.position = collider_initial_position + parent_collision_shape_offset * 1.1
+	if ray_dir == 'down':
+		print(can_teleport())
+	if -collision_distance > dive_into_portal_distance:
 		collision_shape_2d.position = collider_initial_position \
-			+ parent_collision_shape_offset.rotated(other_portal.rotation - portal.rotation)
-		teleport_mutex[ray_dir] = true
+			+ parent_collision_shape_offset.rotated(other_portal.rotation - portal.rotation) * 2
+		print(Vector2.RIGHT.rotated(other_portal.rotation) * teleport_exit_offset)
 		teleported.emit(
 			func(prev_velocity: Vector2):
-				var new_velocity = prev_velocity.length() * Vector2.RIGHT.rotated(other_portal.rotation)
+				var new_velocity = max(prev_velocity.length(), min_out_speed) * Vector2.RIGHT.rotated(other_portal.rotation)
+				print( teleport_exit_offset)
 				return {
-					new_position = other_portal.global_position + new_velocity.normalized() * teleport_exit_offset,
+					new_position = other_portal.global_position + Vector2.RIGHT.rotated(other_portal.rotation) * teleport_exit_offset,
 					new_velocity = new_velocity,
 				}
 		)

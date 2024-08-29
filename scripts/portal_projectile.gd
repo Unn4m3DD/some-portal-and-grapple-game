@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var root := get_node("/root/");
-@onready var portal_manager := $/root/Level/PortalManager
+@onready var portal_manager := $ / root / Level / PortalManager
 @onready var ray_cast_2d := $RayCast2D
 
 const PORTAL_PROJECTILE_BLUE = preload("res://materials/portal_projectile_blue.tres")
@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 		var tile_data = other_body.get_cell_tile_data(other_body.get_coords_for_body_rid(ray_cast_2d.get_collider_rid()))
 		if not tile_data:
 			return
+		if tile_data.get_custom_data("is_glass"): return
 		var can_orange_portal = tile_data.get_custom_data("can_orange_portal") || false
 		var can_blue_portal = tile_data.get_custom_data("can_blue_portal") || false
 		
