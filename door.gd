@@ -13,10 +13,10 @@ func toggle_door_visibility(visible: bool):
 func _ready():
 	(button.is_pressed as Signal).connect(on_button_pressed)
 	(button.is_not_pressed as Signal).connect(on_button_not_pressed)
-  toggle_door_visibility(!is_inverted)
+	toggle_door_visibility(!is_inverted)
 	
 func on_button_pressed():
-  toggle_door_visibility(is_inverted)
+	toggle_door_visibility(is_inverted)
 
 func on_button_not_pressed():
-  toggle_door_visibility(!is_inverted)
+	toggle_door_visibility(!is_inverted)
