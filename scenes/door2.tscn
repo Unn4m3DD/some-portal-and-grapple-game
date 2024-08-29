@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://dpq1gwx5obvvk"]
 
-[ext_resource type="Script" path="res://door.gd" id="1_4pvdb"]
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_4pvdb"]
 [ext_resource type="Texture2D" uid="uid://br2fprxcjrjx4" path="res://sprites/background/door.png" id="2_4kab0"]
 [ext_resource type="Texture2D" uid="uid://box0lfk8xc3si" path="res://sprites/particles/door_particle.png" id="3_4k30j"]
 [ext_resource type="Material" uid="uid://b14va5irknsqe" path="res://materials/door_sparkle.tres" id="3_cwmno"]
