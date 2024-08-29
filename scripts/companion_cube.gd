@@ -44,3 +44,16 @@ func _on_teleportable_teleported(get_new_position):
 	global_position = new_params.new_position
 	linear_velocity = new_params.new_velocity
 	is_following = false
+	
+func queue_next_animation():
+	
+	if is_following:
+		$Highlighter/Highlightable/AnimationPlayer.play(
+			"smile" if randf() < .5 else "uwu"
+		)
+	else:
+		$Highlighter/Highlightable/AnimationPlayer.play(
+			"idle" if
+			randf() < .4 else "idle_2"
+		)
+	
