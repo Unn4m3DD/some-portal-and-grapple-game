@@ -12,7 +12,7 @@ var last_hooked_ms := 0
 
 const config := {
 	x_acceleration = 200.0 * 3,
-	max_x_speed = 100.0 * 3,
+	max_x_speed = 1200.0 * 3,
 	max_y_speed = 1000.0 * 3,
 	max_y_speed_with_down_pressed = 1500.0 * 3,
 	gravity = 50.0 * 3,

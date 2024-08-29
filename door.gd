@@ -2,19 +2,21 @@ extends CollisionObject2D
 
 @export var button: Node2D;
 @export var is_inverted: bool
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-func toggle_door_visibility(visible: bool):
-	set_collision_layer_value(1, is_inverted)
-	for child in get_children():
-		if child.name.contains("DoorMiddle"):
-			child.visible = visible
 
+func toggle_door_visibility(new_visibility: bool):
+	if new_visibility:
+		animation_player.play("close")
+	else:
+		animation_player.play("open")
 
 func _ready():
 	(button.is_pressed as Signal).connect(on_button_pressed)
 	(button.is_not_pressed as Signal).connect(on_button_not_pressed)
-	toggle_door_visibility(!is_inverted)
-	
+	if !is_inverted: 
+		toggle_door_visibility(true)
+
 func on_button_pressed():
 	toggle_door_visibility(is_inverted)
 
