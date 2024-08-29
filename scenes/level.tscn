@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dqd3jb3es6xkj" path="res://scenes/highlighter.tscn" id="8_w237a"]
 [ext_resource type="PackedScene" uid="uid://51fykx10g7b" path="res://scenes/companion_cube.tscn" id="11_nm4nk"]
 [ext_resource type="PackedScene" uid="uid://b0gemn6pev7o4" path="res://scenes/mouse.tscn" id="11_ysqm6"]
-[ext_resource type="PackedScene" path="res://scenes/door2.tscn" id="13_565cv"]
+[ext_resource type="PackedScene" uid="uid://dpq1gwx5obvvk" path="res://scenes/door2.tscn" id="13_565cv"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v1tst"]
 polygon = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
@@ -237,7 +237,7 @@ motion_scale = Vector2(0.25, 0.25)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/BigPlanet"]
 texture_filter = 1
-position = Vector2(-889, -1760)
+position = Vector2(-806, -1734)
 scale = Vector2(1.6734, 1.6734)
 texture = ExtResource("6_8ahws")
 centered = false
