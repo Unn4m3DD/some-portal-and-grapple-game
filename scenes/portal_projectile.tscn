@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/portal_projectile.gd" id="1_f412a"]
 [ext_resource type="Texture2D" uid="uid://okkmvjmab6b6" path="res://sprites/particles/portal_projectile.png" id="2_cbb10"]
-[ext_resource type="Material" uid="uid://dpetnfloatqhp" path="res://materials/portal_projectile_blue.tres" id="2_ebqfa"]
+[ext_resource type="Material" uid="uid://dpdhv13nhot00" path="res://materials/portal_projectile_blue.tres" id="2_ebqfa"]
 
 [sub_resource type="Animation" id="Animation_u3t6f"]
 length = 0.001

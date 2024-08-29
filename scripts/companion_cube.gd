@@ -3,6 +3,7 @@ extends RigidBody2D
 @onready var highlighter: Area2D = $Highlighter
 
 @onready var player_hand = $/root/Level/Player/Hand/PortalGun
+@onready var timer: Timer = $Timer
 
 
 var pull_force := 10.0
@@ -17,8 +18,13 @@ func _input(event: InputEvent) -> void:
 			elif is_following:
 				is_following = false
 				
+func _ready():
+	timer.timeout.connect(_on_timer_timeout)
 
-func _physics_process(delta: float) -> void:
+func _on_timer_timeout():
+	set_collision_layer_value(1, true)
+
+func _physics_process(_delta: float) -> void:
 	if is_following:
 		gravity_scale = 0
 		var cube_to_hand_vector = player_hand.global_position - global_position
@@ -26,11 +32,10 @@ func _physics_process(delta: float) -> void:
 			linear_velocity = cube_to_hand_vector * pull_force
 		else:
 			linear_velocity = Vector2.ZERO
-		print(linear_velocity)
 		set_collision_layer_value(1, false)
 	else:
 		gravity_scale = 1
-		set_collision_layer_value(1, true)
+		timer.start()
 	
 
 

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bnul4wsop1b1v" path="res://scenes/chain.tscn" id="2_np5ty"]
 [ext_resource type="Texture2D" uid="uid://b4qbg1ns3av3p" path="res://sprites/character/character_idle.png" id="3_bwaek"]
 [ext_resource type="Texture2D" uid="uid://8w6nkqhrpj2w" path="res://sprites/portal_gun.png" id="4_gk7nr"]
-[ext_resource type="PackedScene" path="res://scenes/teleportable.tscn" id="6_5pni0"]
+[ext_resource type="PackedScene" uid="uid://wd8jec0j8pg8" path="res://scenes/teleportable.tscn" id="6_5pni0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kuigd"]
 atlas = ExtResource("3_bwaek")
@@ -228,21 +228,21 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qnbs7"]
-radius = 18.1108
+radius = 54.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b02up"]
 radius = 385.032
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(1.2, 1.2)
 collision_layer = 2
 script = ExtResource("1_cblew")
 
 [node name="Chain" parent="." instance=ExtResource("2_np5ty")]
 position = Vector2(0, -7)
+scale = Vector2(3, 3)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, 17.6621)
+position = Vector2(0.999992, 19.3196)
 scale = Vector2(0.049, 0.0491249)
 sprite_frames = SubResource("SpriteFrames_dy5nv")
 animation = &"new_animation"
@@ -253,7 +253,7 @@ offset = Vector2(0, -689.71)
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(0, -17)
-scale = Vector2(2, 2)
+scale = Vector2(6, 6)
 script = ExtResource("2_aye80")
 
 [node name="PortalGun" type="Sprite2D" parent="Hand"]
@@ -272,6 +272,7 @@ rotation = 1.56509
 shape = SubResource("CircleShape2D_qnbs7")
 
 [node name="ObjectPickup" type="Node2D" parent="."]
+scale = Vector2(3, 3)
 
 [node name="Area2D" type="Area2D" parent="ObjectPickup"]
 collision_layer = 8
@@ -282,6 +283,7 @@ position = Vector2(0, -25.8333)
 shape = SubResource("CircleShape2D_b02up")
 
 [node name="Teleportable" parent="." node_paths=PackedStringArray("collision_shape_2d") instance=ExtResource("6_5pni0")]
+scale = Vector2(3, 3)
 collision_shape_2d = NodePath("../CollisionShape2D")
 
 [connection signal="teleported" from="Teleportable" to="." method="_on_teleportable_teleported"]

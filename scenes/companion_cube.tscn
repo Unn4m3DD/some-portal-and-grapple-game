@@ -88,9 +88,11 @@ size = Vector2(72, 56)
 size = Vector2(72, 54)
 
 [node name="CompanionCube" type="RigidBody2D"]
+collision_layer = 8
 script = ExtResource("1_rsyxq")
 
 [node name="Highlighter" parent="." instance=ExtResource("1_pu0he")]
+scale = Vector2(3, 3)
 
 [node name="Highlightable" type="AnimatedSprite2D" parent="Highlighter"]
 material = ExtResource("2_1by2f")
@@ -103,10 +105,14 @@ autoplay = "default"
 shape = SubResource("RectangleShape2D_yyscv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_4aw3w")
 
 [node name="Teleportable" parent="." node_paths=PackedStringArray("collision_shape_2d") instance=ExtResource("5_6piv5")]
-scale = Vector2(1.76, 1.32)
+position = Vector2(-10, -18)
+scale = Vector2(5, 5)
 collision_shape_2d = NodePath("../CollisionShape2D")
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="teleported" from="Teleportable" to="." method="_on_teleportable_teleported"]

@@ -11,17 +11,17 @@ var last_jump_input := 0
 var last_hooked_ms := 0
 
 const config := {
-	x_acceleration = 200.0,
-	max_x_speed = 800.0,
-	max_y_speed = 1000.0,
-	max_y_speed_with_down_pressed = 1500.0,
-	gravity = 50.0,
-	jump_force = 1000.0,
+	x_acceleration = 200.0 * 3,
+	max_x_speed = 100.0 * 3,
+	max_y_speed = 1000.0 * 3,
+	max_y_speed_with_down_pressed = 1500.0 * 3,
+	gravity = 50.0 * 3,
+	jump_force = 1000.0 * 3,
 	squish = .8,
 	coyote_time_ms = 200,
 	jump_buffering_time_ms = 200,
 	disabled_controls_after_tp_ms = 200,
-	chain_velocity = 120.0,
+	chain_velocity = 120.0 * 3,
 	maintain_momentum_after_hook_ms = 500,
 }
 

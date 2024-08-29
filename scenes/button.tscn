@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://bccsbsb5k7n3y"]
+[gd_scene load_steps=34 format=3 uid="uid://bccsbsb5k7n3y"]
 
 [ext_resource type="Texture2D" uid="uid://cpa4wabtp6625" path="res://sprites/button.png" id="1_dc2rp"]
+[ext_resource type="Script" path="res://scripts/button.gd" id="1_u3lwl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vqgc6"]
 atlas = ExtResource("1_dc2rp")
@@ -106,7 +107,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -144,7 +145,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"go_down",
-"speed": 25.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -182,7 +183,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"go_up",
-"speed": 25.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -190,38 +191,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"up",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yqv7e"]
-size = Vector2(36, 8)
-
-[sub_resource type="Animation" id="Animation_rcg37"]
-resource_name = "go_down"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 4)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"go_down"]
-}
+size = Vector2(332, 64)
 
 [sub_resource type="Animation" id="Animation_2mik6"]
 length = 0.001
@@ -250,20 +224,79 @@ tracks/1/keys = {
 "values": [&"go_down"]
 }
 
+[sub_resource type="Animation" id="Animation_rcg37"]
+resource_name = "go_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"go_down", &"down"]
+}
+
+[sub_resource type="Animation" id="Animation_gm2e7"]
+resource_name = "go_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"go_up", &"up"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1yrxs"]
 _data = {
 "RESET": SubResource("Animation_2mik6"),
-"go_down": SubResource("Animation_rcg37")
+"go_down": SubResource("Animation_rcg37"),
+"go_up": SubResource("Animation_gm2e7")
 }
 
-[node name="Node2D" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wc2os"]
+size = Vector2(332, 84)
+
+[node name="Button" type="Area2D"]
+collision_mask = 10
+script = ExtResource("1_u3lwl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.0463065, 0.0485437)
+scale = Vector2(0.414, 0.441)
 sprite_frames = SubResource("SpriteFrames_dy3op")
 animation = &"go_down"
 autoplay = "up"
-frame_progress = 0.675433
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yqv7e")
@@ -272,3 +305,15 @@ shape = SubResource("RectangleShape2D_yqv7e")
 libraries = {
 "": SubResource("AnimationLibrary_1yrxs")
 }
+autoplay = "go_up"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -39)
+shape = SubResource("RectangleShape2D_wc2os")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

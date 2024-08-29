@@ -30,9 +30,8 @@ var opposite = {
 }
 
 	
-@export_range(0, 1000) var disabled_controls_after_tp_ms := 200
-@export_range(15, 35) var distance_to_portal_before_tp := 25;
-@export_range(0, 100) var teleport_offset := 30
+var distance_to_portal_before_tp := 75
+var teleport_offset := 90
 
 signal teleported(get_new_position)
 
@@ -45,27 +44,30 @@ func _process(_delta: float) -> void:
 		for ray in rays[ray_key]:
 			if ray.is_colliding():
 				no_colision = false
-				var colision_ray = ray.get_collision_point() - ray.global_position
+				var collision_point = Node2D.new()
+				collision_point.position = ray.get_collision_point()
+				get_tree().root.add_child(collision_point)
+				var collision_position = collision_point.global_position
+				get_tree().root.remove_child(collision_point)
+				var colision_ray = collision_position - ray.global_position
 				var portal_is_parallel_to_ray = is_zero_approx(Vector2.RIGHT.rotated(ray.get_collider().rotation).cross(colision_ray))
 				if portal_is_parallel_to_ray:
-					var distance = ray.get_collision_point().distance_to(ray.global_position)
+					var distance = collision_position.distance_to(ray.global_position)
+					var translation = collider_initial_position - ray.target_position.normalized() * (distance - ray.target_position.length() * get_parent().get_parent().scale.x)
 					if distance > distance_to_portal_before_tp:
-						collision_shape_2d.position = collider_initial_position + ray.target_position.normalized() * (distance - ray.target_position.length())
+						collision_shape_2d.position = translation
 					elif not teleport_mutex[ray_key] and not teleport_mutex[opposite[ray_key]]:
 						var current_portal = ray.get_collider();
 						var other_portal = current_portal.other_portal;
-						collision_shape_2d.position = \
-							collider_initial_position + \
-							(ray.target_position.normalized() * (distance - ray.target_position.length())) \
-							.rotated(current_portal.rotation - other_portal.rotation)
+						collision_shape_2d.position = translation.rotated(current_portal.rotation - other_portal.rotation)
 						teleport_mutex[opposite[ray_key]] = true
 						teleport_mutex[ray_key] = true
 						teleported.emit(
 							func(prev_velocity: Vector2):
 								var new_velocity = prev_velocity.length() * Vector2.RIGHT.rotated(other_portal.rotation)
 								return {
-									new_position = other_portal.global_position + new_velocity.normalized() * teleport_offset,
-									new_velocity = new_velocity,	
+									new_position = other_portal.global_position + prev_velocity.normalized() * teleport_offset,
+									new_velocity = new_velocity,
 								}
 						)
 			else:
