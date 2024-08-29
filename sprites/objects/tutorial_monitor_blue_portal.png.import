@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpa4wabtp6625"
-path="res://.godot/imported/button.png-13aac4604de32c9ef5dfd2bf318cd942.ctex"
+uid="uid://2aiw1ak8oj6k"
+path="res://.godot/imported/tutorial_monitor_blue_portal.png-4244e041b143c1ac7d43c8a533c6320f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/button.png"
-dest_files=["res://.godot/imported/button.png-13aac4604de32c9ef5dfd2bf318cd942.ctex"]
+source_file="res://sprites/objects/tutorial_monitor_blue_portal.png"
+dest_files=["res://.godot/imported/tutorial_monitor_blue_portal.png-4244e041b143c1ac7d43c8a533c6320f.ctex"]
 
 [params]
 

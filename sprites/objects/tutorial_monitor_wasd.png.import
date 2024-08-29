@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n43dnyc6nteh"
-path="res://.godot/imported/monitor.png-8faedabdf5872b39ab665333c644ea74.ctex"
+uid="uid://dyuyrke88e8a2"
+path="res://.godot/imported/tutorial_monitor_wasd.png-aa5115738030ccfa7e49ffebd6d2b4ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/monitor.png"
-dest_files=["res://.godot/imported/monitor.png-8faedabdf5872b39ab665333c644ea74.ctex"]
+source_file="res://sprites/objects/tutorial_monitor_wasd.png"
+dest_files=["res://.godot/imported/tutorial_monitor_wasd.png-aa5115738030ccfa7e49ffebd6d2b4ce.ctex"]
 
 [params]
 
