@@ -1,11 +1,11 @@
-[gd_scene load_steps=38 format=3 uid="uid://b7e7nt2r1s5yi"]
+[gd_scene load_steps=39 format=3 uid="uid://b7e7nt2r1s5yi"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_cblew"]
 [ext_resource type="Script" path="res://scripts/portal_gun.gd" id="2_aye80"]
 [ext_resource type="PackedScene" uid="uid://bnul4wsop1b1v" path="res://scenes/chain.tscn" id="2_np5ty"]
 [ext_resource type="Texture2D" uid="uid://b4qbg1ns3av3p" path="res://sprites/character/character_idle.png" id="3_bwaek"]
 [ext_resource type="Texture2D" uid="uid://8w6nkqhrpj2w" path="res://sprites/character/portal_gun.png" id="4_gk7nr"]
-[ext_resource type="PackedScene" path="res://scenes/teleportable.tscn" id="6_5pni0"]
+[ext_resource type="PackedScene" uid="uid://wd8jec0j8pg8" path="res://scenes/teleportable.tscn" id="6_5pni0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kuigd"]
 atlas = ExtResource("3_bwaek")
@@ -202,7 +202,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.049, 0.0491249)]
+"values": [Vector2(0.2, 0.2)]
 }
 
 [sub_resource type="Animation" id="Animation_4kdpe"]
@@ -218,7 +218,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0333333, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.049, 0.0491249), Vector2(0.049, 0.03), Vector2(0.049, 0.0491249)]
+"values": [Vector2(0.2, 0.2), Vector2(0.2, 0.123), Vector2(0.2, 0.2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3smt3"]
@@ -233,17 +233,19 @@ radius = 54.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_b02up"]
 radius = 385.032
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pa7ms"]
+radius = 18.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_cblew")
 
 [node name="Chain" parent="." instance=ExtResource("2_np5ty")]
 position = Vector2(0, -7)
-scale = Vector2(3, 3)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0.999992, 19.3196)
-scale = Vector2(0.049, 0.0491249)
+position = Vector2(0.999992, 57.3503)
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_dy5nv")
 animation = &"new_animation"
 autoplay = "new_animation"
@@ -259,7 +261,7 @@ script = ExtResource("2_aye80")
 [node name="PortalGun" type="Sprite2D" parent="Hand"]
 position = Vector2(21, 0)
 rotation = -2.13887
-scale = Vector2(0.0244648, 0.0244648)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("4_gk7nr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -284,6 +286,7 @@ shape = SubResource("CircleShape2D_b02up")
 
 [node name="Teleportable" parent="." node_paths=PackedStringArray("collision_shape_2d") instance=ExtResource("6_5pni0")]
 scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_pa7ms")
 collision_shape_2d = NodePath("../CollisionShape2D")
 
 [connection signal="teleported" from="Teleportable" to="." method="_on_teleportable_teleported"]

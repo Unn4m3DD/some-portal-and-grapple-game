@@ -1,10 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://4ndlveyb3qg2"]
+[gd_scene load_steps=17 format=3 uid="uid://4ndlveyb3qg2"]
 
 [ext_resource type="PackedScene" uid="uid://dqd3jb3es6xkj" path="res://scenes/highlighter.tscn" id="1_pu0he"]
 [ext_resource type="Script" path="res://scripts/companion_cube.gd" id="1_rsyxq"]
 [ext_resource type="Material" uid="uid://br6y1bufs1i5v" path="res://materials/highlight.tres" id="2_1by2f"]
 [ext_resource type="Texture2D" uid="uid://2332oo1l512r" path="res://sprites/companion_cube/companion_cube.png" id="4_06dyg"]
-[ext_resource type="PackedScene" path="res://scenes/teleportable.tscn" id="5_6piv5"]
+[ext_resource type="PackedScene" uid="uid://wd8jec0j8pg8" path="res://scenes/teleportable.tscn" id="5_6piv5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6rx1k"]
 atlas = ExtResource("4_06dyg")
@@ -82,21 +82,23 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yyscv"]
-size = Vector2(72, 56)
+size = Vector2(230, 170)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4aw3w"]
-size = Vector2(72, 54)
+size = Vector2(230, 170)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uh0m5"]
+size = Vector2(230, 170)
 
 [node name="CompanionCube" type="RigidBody2D"]
 collision_layer = 8
 script = ExtResource("1_rsyxq")
 
 [node name="Highlighter" parent="." instance=ExtResource("1_pu0he")]
-scale = Vector2(3, 3)
 
 [node name="Highlightable" type="AnimatedSprite2D" parent="Highlighter"]
 material = ExtResource("2_1by2f")
-scale = Vector2(0.0909993, 0.0909993)
+scale = Vector2(0.286154, 0.286154)
 sprite_frames = SubResource("SpriteFrames_fngpq")
 animation = &"smile"
 autoplay = "default"
@@ -105,12 +107,11 @@ autoplay = "default"
 shape = SubResource("RectangleShape2D_yyscv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_4aw3w")
 
 [node name="Teleportable" parent="." node_paths=PackedStringArray("collision_shape_2d") instance=ExtResource("5_6piv5")]
-position = Vector2(-10, -18)
-scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_uh0m5")
+target_position = Vector2(300, 0)
 collision_shape_2d = NodePath("../CollisionShape2D")
 
 [node name="Timer" type="Timer" parent="."]

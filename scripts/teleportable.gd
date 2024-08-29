@@ -1,80 +1,74 @@
-extends Node
+extends ShapeCast2D
 
-@onready var ray_right1: RayCast2D = $RayCasts/RayRight1
-@onready var ray_left1: RayCast2D = $RayCasts/RayLeft1
-@onready var ray_top1: RayCast2D = $RayCasts/RayTop1
-@onready var ray_bottom1: RayCast2D = $RayCasts/RayBottom1
 
-@onready var ray_right2: RayCast2D = $RayCasts/RayRight2
-@onready var ray_left2: RayCast2D = $RayCasts/RayLeft2
-@onready var ray_top2: RayCast2D = $RayCasts/RayTop2
-@onready var ray_bottom2: RayCast2D = $RayCasts/RayBottom2
-
-@onready var rays = {
-	right = [ray_right1, ray_right2],
-	left = [ray_left1, ray_left2],
-	top = [ray_top1, ray_top2],
-	bottom = [ray_bottom1, ray_bottom2],
+@onready var ray_targets = {
+	right = target_position,
+	down = target_position.rotated(deg_to_rad(90)),
+	left = target_position.rotated(deg_to_rad(180)),
+	up = target_position.rotated(deg_to_rad(270)),
 }
-var teleport_mutex = {
+var ray_dir = ""
+static var teleport_mutex = {
 	right = false,
 	left = false,
 	top = false,
 	bottom = false,
 }
-var opposite = {
-	right = 'left',
-	left = 'right',
-	top = 'bottom',
-	bottom = 'top',
-}
 
 	
-var distance_to_portal_before_tp := 75
-var teleport_offset := 90
-
+var dive_into_portal_distance := 20
+var teleport_exit_offset = 30;
 signal teleported(get_new_position)
 
 @export var collision_shape_2d: CollisionShape2D
 @onready var collider_initial_position: Vector2 = collision_shape_2d.position
 
+func _ready() -> void:
+	if !String(get_path()).contains("ShapeCast2D"):
+		for ray_key in ray_targets:
+			var new_ray = duplicate();
+			new_ray.target_position = ray_targets[ray_key]
+			new_ray.ray_dir = ray_key
+			add_sibling.call_deferred(new_ray)
+		queue_free()
+
+func can_teleport() -> bool:
+	for ray_key in teleport_mutex:
+		if teleport_mutex[ray_key]:
+			return false
+	return true
+
 func _process(_delta: float) -> void:
-	var no_colision = true
-	for ray_key in rays:
-		for ray in rays[ray_key]:
-			if ray.is_colliding():
-				no_colision = false
-				var collision_point = Node2D.new()
-				collision_point.position = ray.get_collision_point()
-				get_tree().root.add_child(collision_point)
-				var collision_position = collision_point.global_position
-				get_tree().root.remove_child(collision_point)
-				var colision_ray = collision_position - ray.global_position
-				var portal_is_parallel_to_ray = is_zero_approx(Vector2.RIGHT.rotated(ray.get_collider().rotation).cross(colision_ray))
-				if portal_is_parallel_to_ray:
-					var distance = collision_position.distance_to(ray.global_position)
-					var translation = collider_initial_position - ray.target_position.normalized() * (distance - ray.target_position.length() * get_parent().get_parent().scale.x)
-					if distance > distance_to_portal_before_tp:
-						collision_shape_2d.position = translation
-					elif not teleport_mutex[ray_key] and not teleport_mutex[opposite[ray_key]]:
-						var current_portal = ray.get_collider();
-						var other_portal = current_portal.other_portal;
-						collision_shape_2d.position = translation.rotated(current_portal.rotation - other_portal.rotation)
-						teleport_mutex[opposite[ray_key]] = true
-						teleport_mutex[ray_key] = true
-						teleported.emit(
-							func(prev_velocity: Vector2):
-								var new_velocity = prev_velocity.length() * Vector2.RIGHT.rotated(other_portal.rotation)
-								return {
-									new_position = other_portal.global_position + prev_velocity.normalized() * teleport_offset,
-									new_velocity = new_velocity,
-								}
-						)
-			else:
-				teleport_mutex[ray_key] = false
-	
-	if no_colision:
-		collision_shape_2d.position = Vector2(
-			move_toward(collision_shape_2d.position.x, collider_initial_position.x, 1),
-			move_toward(collision_shape_2d.position.y, collider_initial_position.y, 1),
+	if !is_colliding():
+		teleport_mutex[ray_dir] = false
+		return
+	var ray_vector := target_position - position
+	var collision_index: int = floor(collision_result.size() / 2.);
+	var portal := get_collider(collision_index)
+	var other_portal = portal.other_portal
+	var portal_normal := Vector2.RIGHT.rotated(portal.rotation)
+	var portal_is_parallel_to_ray := portal_normal.rotated(PI).angle_to(target_position) < PI / 4
+	if !portal_is_parallel_to_ray: return
+	var collision_point := get_collision_point(collision_index)
+	var collision_distance := collision_point.distance_to(global_position) * sign(ray_vector.dot(collision_point - global_position)) as int
+	var parent_collision_shape_offset_ammount: int = max(target_position.length() - collision_distance, 0)
+	var parent_collision_shape_offset := parent_collision_shape_offset_ammount * portal_normal
+	print(parent_collision_shape_offset)
+	collision_shape_2d.position = collider_initial_position + parent_collision_shape_offset
+	if -collision_distance > dive_into_portal_distance and can_teleport():
+		print(
+			parent_collision_shape_offset,
+			portal.rotation - other_portal.rotation,
+			parent_collision_shape_offset.rotated(other_portal.rotation - portal.rotation)
+		)
+		collision_shape_2d.position = collider_initial_position \
+			+ parent_collision_shape_offset.rotated(other_portal.rotation - portal.rotation)
+		teleport_mutex[ray_dir] = true
+		teleported.emit(
+			func(prev_velocity: Vector2):
+				var new_velocity = prev_velocity.length() * Vector2.RIGHT.rotated(other_portal.rotation)
+				return {
+					new_position = other_portal.global_position + new_velocity.normalized() * teleport_exit_offset,
+					new_velocity = new_velocity,
+				}
 		)

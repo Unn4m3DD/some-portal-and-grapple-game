@@ -2,56 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/teleportable.gd" id="1_l42ga"]
 
-[node name="Teleportable" type="Node2D"]
+[node name="Teleportable" type="ShapeCast2D"]
+target_position = Vector2(100, 0)
+collision_mask = 4
+collide_with_areas = true
 script = ExtResource("1_l42ga")
-
-[node name="RayCasts" type="Node2D" parent="."]
-position = Vector2(0, 15.6)
-
-[node name="RayLeft1" type="RayCast2D" parent="RayCasts"]
-position = Vector2(5, 4)
-target_position = Vector2(-80, 0)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayLeft2" type="RayCast2D" parent="RayCasts"]
-position = Vector2(5, -30)
-target_position = Vector2(-80, 0)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayRight1" type="RayCast2D" parent="RayCasts"]
-position = Vector2(-5, -30)
-target_position = Vector2(80, 0)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayRight2" type="RayCast2D" parent="RayCasts"]
-position = Vector2(-5, 4)
-target_position = Vector2(80, 0)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayTop1" type="RayCast2D" parent="RayCasts"]
-position = Vector2(17, -8)
-target_position = Vector2(0, -80)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayTop2" type="RayCast2D" parent="RayCasts"]
-position = Vector2(-17, -8)
-target_position = Vector2(0, -80)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayBottom1" type="RayCast2D" parent="RayCasts"]
-position = Vector2(-17, -18)
-target_position = Vector2(0, 80)
-collision_mask = 4
-collide_with_areas = true
-
-[node name="RayBottom2" type="RayCast2D" parent="RayCasts"]
-position = Vector2(17, -18)
-target_position = Vector2(0, 80)
-collision_mask = 4
-collide_with_areas = true
