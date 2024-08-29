@@ -8,7 +8,7 @@ const PORTAL_PROJECTILE_BLUE = preload("res://materials/portal_projectile_blue.t
 const PORTAL_PROJECTILE_ORANGE = preload("res://materials/portal_projectile_orange.tres")
 
 var direction := Vector2.ZERO
-const speed := 2500.0
+const speed := 6000.0
 var box_scene := preload("res://scenes/box.tscn")
 var portal_color := ''
 
@@ -16,6 +16,7 @@ func _ready():
 	$Projectile2.process_material = PORTAL_PROJECTILE_BLUE if portal_color == "blue" else PORTAL_PROJECTILE_ORANGE
 
 func _process(delta: float) -> void:
+	ray_cast_2d.force_raycast_update()
 	position += direction * speed * delta
 	if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider() is TileMapLayer:
 		var other_body: TileMapLayer = ray_cast_2d.get_collider()

@@ -9,8 +9,7 @@
 [node name="Sky" type="ParallaxLayer" parent="."]
 position = Vector2(610, -3904)
 scale = Vector2(2, 2)
-motion_scale = Vector2(0, 0)
-motion_mirroring = Vector2(50, 0)
+motion_scale = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Sky"]
 texture_filter = 1
